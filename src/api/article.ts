@@ -18,4 +18,9 @@ export const ArticleApi = {
     deleteCollection: async(id: string, params?: QueryParams): Promise<ApiResponse> => {
         return request.delete(`/blog-collections/${id}`, {params})
     },
+    categories:  async(params?: QueryParams): Promise<ApiResponse> => {
+        return request.get("/categories", {
+            params
+        })
+    },
 }

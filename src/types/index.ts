@@ -52,6 +52,7 @@ export type Article = {
   description: string;
   thumbnail: MediaAsset,
   categories: [],
+  author: User,
   status: string,
   viewCount: number,
   keywords: string[],
@@ -71,4 +72,13 @@ export type ArticleCollection = {
   isDeleted: boolean,
   createdAt: string,
   updatedAt: string
+}
+
+export type ArticleCategory = {
+  _id: string;
+  name: string,
+  slug: string,
+  description: string,
+  createdAt: string,
+  updatedAt: string,
 }

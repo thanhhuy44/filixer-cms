@@ -2,6 +2,7 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
+import Image from "next/image";
 import { ReactNode } from "react";
 
 import { ArticleApi } from "@/api/article";
@@ -69,7 +70,30 @@ function ArticlePicker({ trigger }: Props) {
       <DialogContent>
         <ScrollArea className="max-h-[350px]">
           {data.length
-            ? data.map((item: Article) => <div key={item._id}>1</div>)
+            ? data.map((item: Article) => (
+                <div key={item._id} className="rounded border p-2">
+                  <div className="flex items-center gap-x-2">
+                    <Image
+                      src={item.thumbnail.url}
+                      alt={item.title}
+                      className="aspect-video h-20 rounded object-cover object-center"
+                    />
+                    <div className="space-y-3">
+                      <div className="space-y-1">
+                        <h3 className="line-clamp-1 font-semibold">
+                          {item.title}
+                        </h3>
+                        <p className="line-clamp-2 text-sm">
+                          {item.description}
+                        </p>
+                      </div>
+                      <p className="line-clamp-1 text-sm">
+                        {item.author.fullName}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
             : null}
           <div ref={ref}></div>
         </ScrollArea>
