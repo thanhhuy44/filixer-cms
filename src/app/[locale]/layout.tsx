@@ -5,7 +5,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 
-import { Toaster } from "@/components/ui/sonner";
 import Providers from "@/providers";
 
 export const metadata: Metadata = {
@@ -28,7 +27,6 @@ export default async function RootLayout({
           <Providers>
             <NextIntlClientProvider messages={messages}>
               {children}
-              <Toaster />
             </NextIntlClientProvider>
           </Providers>
         </ThemeProvider>

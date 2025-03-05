@@ -11,7 +11,7 @@ import {
   PaginationPrevious,
 } from "../ui/pagination";
 
-function AppPagination({ page = 1, limit = 10, totalPages = 1 }: QueryParams) {
+function AppPagination({ totalPages = 1 }: QueryParams) {
   return (
     <Pagination>
       <PaginationContent>

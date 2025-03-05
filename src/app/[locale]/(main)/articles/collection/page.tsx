@@ -2,17 +2,22 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { ColumnDef } from "@tanstack/react-table";
-import { Trash } from "lucide-react";
-import Image from "next/image";
+import { Edit, Ellipsis, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { ArticleApi } from "@/api/article";
 import { AppBreadcrumb, AppPagination } from "@/components/layout";
+import { AddCollection } from "@/components/modals";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import LoadingTable from "@/components/ui/loading-table";
-import { Article, QueryParams } from "@/types";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ArticleCollection, QueryParams } from "@/types";
 
 function Page() {
   const [pagination, setPagination] = useState<QueryParams>({
@@ -20,10 +25,10 @@ function Page() {
     limit: 50,
   });
   const { isLoading, data, refetch } = useQuery({
-    queryKey: ["articles"],
-    queryFn: async (): Promise<Article[]> => {
+    queryKey: ["article-collections"],
+    queryFn: async (): Promise<ArticleCollection[]> => {
       try {
-        const response = await ArticleApi.get(pagination);
+        const response = await ArticleApi.collections(pagination);
         setPagination({ ...response.pagination });
         return response.data;
       } catch (error) {
@@ -45,23 +50,12 @@ function Page() {
     }
   };
 
-  const columns: ColumnDef<Article>[] = [
-    {
-      accessorKey: "thumbnail",
-      cell: ({ row }) => (
-        <Image
-          className="aspect-video h-20"
-          width={200}
-          height={200}
-          src={row.original.thumbnail.url}
-          alt={row.original.title}
-        />
-      ),
-      header: "Thumbnail",
-    },
+  const columns: ColumnDef<ArticleCollection>[] = [
     {
       accessorKey: "title",
-      cell: ({ row }) => <p className="line-clamp-2">{row.original.title}</p>,
+      cell: ({ row }) => (
+        <h6 className="line-clamp-2 font-semibold">{row.original.name}</h6>
+      ),
       header: "Title",
     },
     {
@@ -75,22 +69,35 @@ function Page() {
       accessorKey: "updatedAt",
       header: "",
       cell: ({ row }) => (
-        <div className="flex items-center gap-x-2">
-          <Button
-            onClick={() => onDelete(row.original._id)}
-            variant="destructive"
-            size="icon"
-          >
-            <Trash />
-          </Button>
-        </div>
+        <Popover>
+          <PopoverTrigger>
+            <Button variant="ghost">
+              <Ellipsis />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-fit p-1">
+            <div className="flex flex-col">
+              <Button className="" variant="ghost" size="sm">
+                <Edit /> Edit
+              </Button>
+              <Button
+                onClick={() => onDelete(row.original._id)}
+                className="text-destructive hover:bg-destructive-foreground"
+                variant="ghost"
+                size="sm"
+              >
+                <Trash /> Delete
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
       ),
     },
   ];
 
   return (
     <main className=" flex h-full max-h-full flex-col gap-y-4 overflow-hidden">
-      <section className="container">
+      <section className="container flex flex-wrap items-center justify-between gap-3">
         <AppBreadcrumb
           items={[
             {
@@ -101,8 +108,13 @@ function Page() {
               link: "/articles",
               text: "Article",
             },
+            {
+              link: "/articles/collection",
+              text: "Collection",
+            },
           ]}
         />
+        <AddCollection />
       </section>
       <section className="flex-1 overflow-y-auto">
         <div className="container">

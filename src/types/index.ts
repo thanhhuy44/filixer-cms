@@ -59,3 +59,16 @@ export type Article = {
   createdAt: string,
   updatedAt: string,
 }
+
+
+export type ArticleCollection = {
+  _id: string;
+  name: string,
+  slug: string,
+  thumbnail: MediaAsset,
+  description: string,
+  articles: string[],
+  isDeleted: boolean,
+  createdAt: string,
+  updatedAt: string
+}

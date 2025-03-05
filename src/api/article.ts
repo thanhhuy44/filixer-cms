@@ -9,5 +9,13 @@ export const ArticleApi = {
     },
     delete: async(id: string, params?: QueryParams): Promise<ApiResponse> => {
         return request.delete(`/articles/${id}`, {params})
-    }
+    },
+    collections: async(params?: QueryParams): Promise<ApiResponse> => {
+        return request.get("/blog-collections", {
+            params
+        })
+    },
+    deleteCollection: async(id: string, params?: QueryParams): Promise<ApiResponse> => {
+        return request.delete(`/blog-collections/${id}`, {params})
+    },
 }

@@ -1,3 +1,7 @@
+import { InfiniteData } from "@tanstack/react-query";
+
+import { ApiResponse } from "@/types";
+
 export const getHello = () => {
   return "Hello";
 };
@@ -10,3 +14,8 @@ export const getFallbackName = (fullName: string) : string => {
   .slice(-2) // Take the last two initials
   .join(""); // Join them together
 }
+
+export const flatInfinityArray = (array?: InfiniteData<ApiResponse>) => {
+  return array?.pages.length ? array.pages.flat().map(page => page.data).flat() : []
+}
+

@@ -1,6 +1,6 @@
 "use client";
 
-import { Book, LucideIcon } from "lucide-react";
+import { LibraryBig, LucideIcon } from "lucide-react";
 
 import { Link, usePathname } from "@/navigation";
 
@@ -8,22 +8,44 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "../ui/sidebar";
 
-const navs: {
+interface INav {
   icon: LucideIcon;
   text: string;
   path: string;
-}[] = [
+  childs?: {
+    text: string;
+    path: string;
+  }[];
+}
+
+const navs: INav[] = [
   {
-    icon: Book,
+    icon: LibraryBig,
     text: "Article",
     path: "/articles",
+    childs: [
+      {
+        text: "Management",
+        path: "/articles",
+      },
+      {
+        text: "Collection",
+        path: "/articles/collection",
+      },
+      {
+        text: "Category",
+        path: "/articles/categories",
+      },
+    ],
   },
 ];
 
@@ -35,27 +57,36 @@ function AppSidebar() {
         <h1 className="text-center">???</h1>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                {navs.map((nav, index) => {
-                  const isActive =
-                    nav.path.split("/")[1] === pathname.split("/")[1];
-                  const Icon = nav.icon;
-                  return (
-                    <SidebarMenuButton key={index} isActive={isActive} asChild>
-                      <Link href={nav.path}>
-                        <Icon />
-                        {nav.text}
-                      </Link>
-                    </SidebarMenuButton>
-                  );
-                })}
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {navs.map((nav, index) => {
+          const Icon = nav.icon;
+          return (
+            <SidebarGroup key={index}>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <Link href={nav.path}>
+                      <Icon /> {nav.text}
+                    </Link>
+                  </SidebarMenuButton>
+                  {nav.childs?.length ? (
+                    <SidebarMenuSub>
+                      {nav.childs.map((child, index) => {
+                        const isActive = child.path === pathname;
+                        return (
+                          <SidebarMenuSubItem key={index}>
+                            <SidebarMenuSubButton isActive={isActive} asChild>
+                              <Link href={child.path}>{child.text}</Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
+                    </SidebarMenuSub>
+                  ) : null}
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroup>
+          );
+        })}
       </SidebarContent>
     </Sidebar>
   );
