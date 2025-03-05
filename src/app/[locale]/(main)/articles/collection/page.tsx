@@ -25,7 +25,7 @@ function Page() {
     limit: 50,
   });
   const { isLoading, data, refetch } = useQuery({
-    queryKey: ["article-collections"],
+    queryKey: ["article-collections", pagination],
     queryFn: async (): Promise<ArticleCollection[]> => {
       try {
         const response = await ArticleApi.collections(pagination);
@@ -33,7 +33,7 @@ function Page() {
         return response.data;
       } catch (error) {
         console.error("🚀 ~ queryFn: ~ error:", error);
-        throw new Error("Failed to fetch artitcles!");
+        throw new Error("Failed to fetch articles!");
       }
     },
   });
