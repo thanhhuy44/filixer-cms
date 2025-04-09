@@ -1,10 +1,11 @@
 'use client';
 
-import { cn } from '@udecode/cn';
-import { useEditorPlugin, usePluginOption } from '@udecode/plate/react';
-import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
-import { PencilLineIcon } from 'lucide-react';
 import React from 'react';
+
+import { cn } from '@udecode/cn';
+import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
+import { useEditorPlugin, usePluginOption } from '@udecode/plate/react';
+import { PencilLineIcon } from 'lucide-react';
 
 import { ToolbarButton } from './toolbar';
 

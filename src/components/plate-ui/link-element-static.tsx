@@ -1,7 +1,9 @@
-import { cn } from '@udecode/cn';
-import type { SlateElementProps } from '@udecode/plate';
-import { SlateElement } from '@udecode/plate';
 import React from 'react';
+
+import type { SlateElementProps } from '@udecode/plate';
+
+import { cn } from '@udecode/cn';
+import { SlateElement } from '@udecode/plate';
 
 export const LinkElementStatic = ({
   children,

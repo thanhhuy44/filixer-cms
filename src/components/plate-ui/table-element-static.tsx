@@ -1,8 +1,10 @@
-import { cn } from '@udecode/cn';
-import type { SlateElementProps } from '@udecode/plate';
-import { SlateElement } from '@udecode/plate';
-import { BaseTablePlugin,type TTableElement } from '@udecode/plate-table';
 import React from 'react';
+
+import type { SlateElementProps } from '@udecode/plate';
+
+import { cn } from '@udecode/cn';
+import { SlateElement } from '@udecode/plate';
+import { type TTableElement, BaseTablePlugin } from '@udecode/plate-table';
 
 export const TableElementStatic = ({
   children,
@@ -20,7 +22,7 @@ export const TableElementStatic = ({
       {...props}
     >
       <div className="group/table relative w-fit">
-        <table className="ml-px mr-0 table h-px table-fixed border-collapse">
+        <table className="mr-0 ml-px table h-px table-fixed border-collapse">
           <tbody className="min-w-full">{children}</tbody>
         </table>
       </div>

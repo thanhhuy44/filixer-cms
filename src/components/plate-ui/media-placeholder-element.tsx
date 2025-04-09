@@ -1,13 +1,11 @@
 'use client';
 
-import { cn } from '@udecode/cn';
-import {
-  PlateElement,
-  useEditorPlugin,
-  withHOC,
-  withRef,
-} from '@udecode/plate/react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+
 import type { TPlaceholderElement } from '@udecode/plate-media';
+
+import { cn } from '@udecode/cn';
 import {
   AudioPlugin,
   FilePlugin,
@@ -17,9 +15,13 @@ import {
   updateUploadHistory,
   VideoPlugin,
 } from '@udecode/plate-media/react';
+import {
+  PlateElement,
+  useEditorPlugin,
+  withHOC,
+  withRef,
+} from '@udecode/plate/react';
 import { AudioLines, FileUp, Film, ImageIcon } from 'lucide-react';
-import type { ReactNode } from 'react';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFilePicker } from 'use-file-picker';
 
 import { useUploadFile } from '@/lib/uploadthing';
@@ -157,7 +159,7 @@ export const MediaPlaceholderElement = withHOC(
               <div className="relative mr-3 flex text-muted-foreground/80 [&_svg]:size-6">
                 {currentContent.icon}
               </div>
-              <div className="whitespace-nowrap text-sm text-muted-foreground">
+              <div className="text-sm whitespace-nowrap text-muted-foreground">
                 <div>
                   {loading ? uploadingFile?.name : currentContent.content}
                 </div>
@@ -226,7 +228,7 @@ export function ImageProgress({
         src={objectUrl}
       />
       {progress < 100 && (
-        <div className="absolute bottom-1 right-1 flex items-center space-x-2 rounded-full bg-black/50 px-1 py-0.5">
+        <div className="absolute right-1 bottom-1 flex items-center space-x-2 rounded-full bg-black/50 px-1 py-0.5">
           <Spinner />
           <span className="text-xs font-medium text-white">
             {Math.round(progress)}%

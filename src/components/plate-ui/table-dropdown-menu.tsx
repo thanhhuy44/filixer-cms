@@ -1,9 +1,12 @@
 'use client';
 
+import React, { useState } from 'react';
+
 import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
+
 import { cn } from '@udecode/cn';
-import { useEditorPlugin, useEditorSelector } from '@udecode/plate/react';
 import { TablePlugin, useTableMergeState } from '@udecode/plate-table/react';
+import { useEditorPlugin, useEditorSelector } from '@udecode/plate/react';
 import {
   ArrowDown,
   ArrowLeft,
@@ -16,7 +19,6 @@ import {
   Ungroup,
   XIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
 
 import {
   DropdownMenu,
@@ -222,7 +224,7 @@ export function TablePicker() {
 
   return (
     <div
-      className="flex! m-0 flex-col p-0"
+      className="m-0 flex! flex-col p-0"
       onClick={() => {
         tf.insert.table(tablePicker.size, { select: true });
         editor.tf.focus();

@@ -1,9 +1,12 @@
 'use client';
 
-import { cn } from '@udecode/cn';
+import React, { useState } from 'react';
+
 import type { Value } from '@udecode/plate';
-import { Plate, useEditorPlugin, useStoreValue } from '@udecode/plate/react';
+
+import { cn } from '@udecode/cn';
 import { CommentsPlugin } from '@udecode/plate-comments/react';
+import { Plate, useEditorPlugin, useStoreValue } from '@udecode/plate/react';
 import {
   differenceInDays,
   differenceInHours,
@@ -17,7 +20,6 @@ import {
   TrashIcon,
   XIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 import {
@@ -188,7 +190,7 @@ export function Comment(props: {
           <AvatarImage alt={userInfo?.name} src={userInfo?.avatarUrl} />
           <AvatarFallback>{userInfo?.name?.[0]}</AvatarFallback>
         </Avatar>
-        <h4 className="mx-2 text-sm font-semibold leading-none">
+        <h4 className="mx-2 text-sm leading-none font-semibold">
           {/* Replace to your own backend or refer to potion */}
           {userInfo?.name}
         </h4>
@@ -201,7 +203,7 @@ export function Comment(props: {
         </div>
 
         {isMyComment && (hovering || dropdownOpen) && (
-          <div className="absolute right-0 top-0 flex space-x-1">
+          <div className="absolute top-0 right-0 flex space-x-1">
             {index === 0 && (
               <Button
                 variant="ghost"
@@ -237,7 +239,7 @@ export function Comment(props: {
       {isFirst && showDocumentContent && (
         <div className="text-subtle-foreground relative mt-1 flex pl-[32px] text-sm">
           {discussionLength > 1 && (
-            <div className="absolute left-3 top-[5px] h-full w-0.5 shrink-0 bg-muted" />
+            <div className="absolute top-[5px] left-3 h-full w-0.5 shrink-0 bg-muted" />
           )}
           <div className="my-px w-0.5 shrink-0 bg-highlight" />
           {documentContent && <div className="ml-2">{documentContent}</div>}
@@ -246,7 +248,7 @@ export function Comment(props: {
 
       <div className="relative my-1 pl-[26px]">
         {!isLast && (
-          <div className="absolute left-3 top-0 h-full w-0.5 shrink-0 bg-muted" />
+          <div className="absolute top-0 left-3 h-full w-0.5 shrink-0 bg-muted" />
         )}
         <Plate readOnly={!isEditing} editor={commentEditor}>
           <EditorContainer variant="comment">

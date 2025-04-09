@@ -1,10 +1,11 @@
 'use client';
 
+import React, { useMemo, useState } from 'react';
+
 import { withRef } from '@udecode/cn';
-import { PlateElement, usePluginOption } from '@udecode/plate/react';
 import { EmojiInlineIndexSearch, insertEmoji } from '@udecode/plate-emoji';
 import { EmojiPlugin } from '@udecode/plate-emoji/react';
-import React, { useMemo, useState } from 'react';
+import { PlateElement, usePluginOption } from '@udecode/plate/react';
 
 import { useDebounce } from '@/hooks/use-debounce';
 

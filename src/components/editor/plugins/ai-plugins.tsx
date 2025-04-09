@@ -1,6 +1,7 @@
 "use client";
 
 import { AIChatPlugin, AIPlugin } from "@udecode/plate-ai/react";
+import { MarkdownPlugin } from "@udecode/plate-markdown";
 import React from "react";
 
 import { AIMenu } from "@/components/plate-ui/ai-menu";
@@ -89,6 +90,7 @@ export const PROMPT_TEMPLATES = {
 
 export const aiPlugins = [
   cursorOverlayPlugin,
+  MarkdownPlugin.configure({ options: {} }),
   AIPlugin,
   AIChatPlugin.configure({
     options: {

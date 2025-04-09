@@ -1,13 +1,15 @@
 'use client';
 
-import { NodeApi,type SlateEditor } from '@udecode/plate';
+import { useEffect, useMemo } from 'react';
+
+import { type SlateEditor, NodeApi } from '@udecode/plate';
+import { AIChatPlugin, AIPlugin } from '@udecode/plate-ai/react';
+import { useIsSelecting } from '@udecode/plate-selection/react';
 import {
   type PlateEditor,
   useEditorRef,
   usePluginOption,
 } from '@udecode/plate/react';
-import { AIChatPlugin, AIPlugin } from '@udecode/plate-ai/react';
-import { useIsSelecting } from '@udecode/plate-selection/react';
 import {
   Album,
   BadgeHelp,
@@ -22,7 +24,6 @@ import {
   Wand,
   X,
 } from 'lucide-react';
-import { useEffect, useMemo } from 'react';
 
 import { CommandGroup, CommandItem } from './command';
 

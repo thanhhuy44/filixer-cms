@@ -1,19 +1,21 @@
 'use client';
 
+import React from 'react';
+
+import type { TColumnElement } from '@udecode/plate-layout';
+
 import { cn, useComposedRef, withRef } from '@udecode/cn';
 import { PathApi } from '@udecode/plate';
+import { useDraggable, useDropLine } from '@udecode/plate-dnd';
+import { ResizableProvider } from '@udecode/plate-resizable';
+import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import {
   PlateElement,
   usePluginOption,
   useReadOnly,
   withHOC,
 } from '@udecode/plate/react';
-import { useDraggable, useDropLine } from '@udecode/plate-dnd';
-import type { TColumnElement } from '@udecode/plate-layout';
-import { ResizableProvider } from '@udecode/plate-resizable';
-import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import { GripHorizontal } from 'lucide-react';
-import React from 'react';
 
 import { Button } from './button';
 import {

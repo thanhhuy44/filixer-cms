@@ -1,10 +1,12 @@
 'use client';
 
+import React, { useState } from 'react';
+
+import type { TCodeBlockElement } from '@udecode/plate-code-block';
+
 import { cn } from '@udecode/cn';
 import { useEditorRef, useElement, useReadOnly } from '@udecode/plate/react';
-import type { TCodeBlockElement } from '@udecode/plate-code-block';
 import { Check } from 'lucide-react';
-import React, { useState } from 'react';
 
 import { Button } from './button';
 import {
@@ -135,7 +137,7 @@ export function CodeBlockCombobox() {
         <Button
           size="xs"
           variant="ghost"
-          className="h-6 select-none justify-between gap-1 px-2 text-xs text-muted-foreground"
+          className="h-6 justify-between gap-1 px-2 text-xs text-muted-foreground select-none"
           aria-expanded={open}
           role="combobox"
         >

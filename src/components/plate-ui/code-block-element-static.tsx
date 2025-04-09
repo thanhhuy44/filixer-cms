@@ -1,8 +1,10 @@
-import { cn } from '@udecode/cn';
-import type { SlateElementProps } from '@udecode/plate';
-import { SlateElement } from '@udecode/plate';
-import type { TCodeBlockElement } from '@udecode/plate-code-block';
 import React from 'react';
+
+import type { SlateElementProps } from '@udecode/plate';
+import type { TCodeBlockElement } from '@udecode/plate-code-block';
+
+import { cn } from '@udecode/cn';
+import { SlateElement } from '@udecode/plate';
 
 export const CodeBlockElementStatic = ({
   children,

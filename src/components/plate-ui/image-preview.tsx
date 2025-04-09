@@ -1,13 +1,13 @@
 'use client';
 
 import { cn } from '@udecode/cn';
-import { useEditorRef } from '@udecode/plate/react';
 import {
   PreviewImage,
   useImagePreview,
   useImagePreviewValue,
   useScaleInput,
 } from '@udecode/plate-media/react';
+import { useEditorRef } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
 import { ArrowLeft, ArrowRight, Download, Minus, Plus, X } from 'lucide-react';
 

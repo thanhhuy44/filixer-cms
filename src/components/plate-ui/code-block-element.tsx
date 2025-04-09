@@ -1,11 +1,12 @@
 'use client';
 
+import React from 'react';
+
 import { cn, withRef } from '@udecode/cn';
 import { NodeApi } from '@udecode/plate';
-import { PlateElement } from '@udecode/plate/react';
 import { formatCodeBlock, isLangSupported } from '@udecode/plate-code-block';
+import { PlateElement } from '@udecode/plate/react';
 import { BracesIcon, CheckIcon, CopyIcon } from 'lucide-react';
-import React from 'react';
 
 import { Button } from './button';
 import { CodeBlockCombobox } from './code-block-combobox';
@@ -41,7 +42,7 @@ export const CodeBlockElement = withRef<typeof PlateElement>(
             <code>{children}</code>
           </pre>
 
-          <div className="absolute right-1 top-1 z-10 flex select-none gap-0.5">
+          <div className="absolute top-1 right-1 z-10 flex gap-0.5 select-none">
             {isLangSupported(element.lang as string) && (
               <Button
                 size="icon"

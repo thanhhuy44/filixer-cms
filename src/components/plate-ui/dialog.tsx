@@ -1,9 +1,10 @@
 'use client';
 
+import * as React from 'react';
+
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cn, createPrimitiveElement, withCn, withRef } from '@udecode/cn';
 import { X } from 'lucide-react';
-import * as React from 'react';
 
 export const Dialog = DialogPrimitive.Root;
 
@@ -31,7 +32,7 @@ export const DialogContent = withRef<typeof DialogPrimitive.Content>(
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="focus:outline-hidden absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+        <DialogPrimitive.Close className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
           <X className="size-4" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>

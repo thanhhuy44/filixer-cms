@@ -1,5 +1,6 @@
 "use client";
 
+import { Plate } from "@udecode/plate/react";
 import { useForm } from "react-hook-form";
 
 import { PlateEditor } from "@/components/editor/plate-editor";

@@ -1,8 +1,9 @@
 'use client';
 
+import React from 'react';
+
 import { cn } from '@udecode/cn';
 import { PlateElement, withRef } from '@udecode/plate/react';
-import React from 'react';
 
 export const ParagraphElement = withRef<typeof PlateElement>(
   ({ children, className, ...props }, ref) => {

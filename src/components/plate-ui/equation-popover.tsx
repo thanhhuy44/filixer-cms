@@ -1,20 +1,22 @@
 'use client';
 
+import React, { useEffect } from 'react';
+import TextareaAutosize, {
+  type TextareaAutosizeProps,
+} from 'react-textarea-autosize';
+
+import type { TEquationElement } from '@udecode/plate-math';
+
 import { cn } from '@udecode/cn';
+import { useEquationInput } from '@udecode/plate-math/react';
+import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import {
   createPrimitiveComponent,
   useEditorRef,
   useElement,
   useReadOnly,
 } from '@udecode/plate/react';
-import type { TEquationElement } from '@udecode/plate-math';
-import { useEquationInput } from '@udecode/plate-math/react';
-import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import { CornerDownLeftIcon } from 'lucide-react';
-import React, { useEffect } from 'react';
-import TextareaAutosize, {
-  type TextareaAutosizeProps,
-} from 'react-textarea-autosize';
 
 import { Button } from './button';
 import { PopoverContent } from './popover';

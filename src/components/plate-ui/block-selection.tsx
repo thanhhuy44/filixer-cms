@@ -1,14 +1,15 @@
 'use client';
 
-import { cn } from '@udecode/cn';
-import { usePluginOption } from '@udecode/plate/react';
-import { DndPlugin } from '@udecode/plate-dnd';
-import { useBlockSelected } from '@udecode/plate-selection/react';
-import { cva,type VariantProps } from 'class-variance-authority';
 import React from 'react';
 
+import { cn } from '@udecode/cn';
+import { DndPlugin } from '@udecode/plate-dnd';
+import { useBlockSelected } from '@udecode/plate-selection/react';
+import { usePluginOption } from '@udecode/plate/react';
+import { type VariantProps, cva } from 'class-variance-authority';
+
 export const blockSelectionVariants = cva(
-  'z-1 pointer-events-none absolute inset-0 bg-brand/[.13] transition-opacity',
+  'pointer-events-none absolute inset-0 z-1 bg-brand/[.13] transition-opacity',
   {
     defaultVariants: {
       active: true,

@@ -1,7 +1,11 @@
 'use client';
 
+import React from 'react';
+
 import { cn, useComposedRef, withRef } from '@udecode/cn';
 import { PathApi } from '@udecode/plate';
+import { useDraggable, useDropLine } from '@udecode/plate-dnd';
+import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import {
   PlateElement,
   useEditorRef,
@@ -10,10 +14,7 @@ import {
   useReadOnly,
   useSelected,
 } from '@udecode/plate/react';
-import { useDraggable, useDropLine } from '@udecode/plate-dnd';
-import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import { GripVertical } from 'lucide-react';
-import React from 'react';
 
 import { Button } from './button';
 

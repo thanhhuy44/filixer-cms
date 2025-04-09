@@ -1,12 +1,13 @@
 'use client';
 
+import type { PlateEditor } from '@udecode/plate/react';
+
 import {
   type NodeEntry,
   type Path,
-  PathApi,
   type TElement,
+  PathApi,
 } from '@udecode/plate';
-import type { PlateEditor } from '@udecode/plate/react';
 import { insertCallout } from '@udecode/plate-callout';
 import { CalloutPlugin } from '@udecode/plate-callout/react';
 import { insertCodeBlock } from '@udecode/plate-code-block';

@@ -1,9 +1,11 @@
-import { cn } from '@udecode/cn';
+import React from 'react';
+
 import type { SlateElementProps } from '@udecode/plate';
-import { NodeApi, SlateElement } from '@udecode/plate';
 import type { TCaptionElement } from '@udecode/plate-caption';
 import type { TImageElement } from '@udecode/plate-media';
-import React from 'react';
+
+import { cn } from '@udecode/cn';
+import { NodeApi, SlateElement } from '@udecode/plate';
 
 export function ImageElementStatic({
   children,
@@ -29,7 +31,7 @@ export function ImageElementStatic({
     >
       <figure className="group relative m-0 inline-block" style={{ width }}>
         <div
-          className="relative min-w-[92px] max-w-full"
+          className="relative max-w-full min-w-[92px]"
           style={{ textAlign: align }}
         >
           <img

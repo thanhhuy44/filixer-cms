@@ -1,6 +1,20 @@
 'use client';
 
+import React from 'react';
+
+import type { TTableCellElement } from '@udecode/plate-table';
+
 import { cn, withProps, withRef } from '@udecode/cn';
+import {
+  BlockSelectionPlugin,
+  useBlockSelected,
+} from '@udecode/plate-selection/react';
+import {
+  TablePlugin,
+  TableRowPlugin,
+  useTableCellElement,
+  useTableCellElementResizable,
+} from '@udecode/plate-table/react';
 import {
   PlateElement,
   useEditorPlugin,
@@ -8,19 +22,7 @@ import {
   usePluginOption,
   useReadOnly,
 } from '@udecode/plate/react';
-import {
-  BlockSelectionPlugin,
-  useBlockSelected,
-} from '@udecode/plate-selection/react';
-import type { TTableCellElement } from '@udecode/plate-table';
-import {
-  TablePlugin,
-  TableRowPlugin,
-  useTableCellElement,
-  useTableCellElementResizable,
-} from '@udecode/plate-table/react';
 import { cva } from 'class-variance-authority';
-import React from 'react';
 
 import { blockSelectionVariants } from './block-selection';
 import { ResizeHandle } from './resizable';
@@ -102,14 +104,14 @@ export const TableCellElement = withRef<
             <>
               <ResizeHandle
                 {...rightProps}
-                className="-right-1 -top-2 h-[calc(100%_+_8px)] w-2"
+                className="-top-2 -right-1 h-[calc(100%_+_8px)] w-2"
                 data-col={colIndex}
               />
               <ResizeHandle {...bottomProps} className="-bottom-1 h-2" />
               {!hiddenLeft && (
                 <ResizeHandle
                   {...leftProps}
-                  className="-left-1 top-0 w-2"
+                  className="top-0 -left-1 w-2"
                   data-resizer-left={colIndex === 0 ? 'true' : undefined}
                 />
               )}
@@ -146,7 +148,7 @@ export const TableCellHeaderElement = withProps(TableCellElement, {
   isHeader: true,
 });
 
-const columnResizeVariants = cva('hidden animate-in fade-in', {
+const columnResizeVariants = cva('fade-in hidden animate-in', {
   variants: {
     colIndex: {
       0: 'group-has-[[data-col="0"]:hover]/table:block group-has-[[data-col="0"][data-resizing="true"]]/table:block',

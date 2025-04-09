@@ -1,33 +1,35 @@
 'use client';
 
-import {
-  createZustandStore,
-  type NodeEntry,
-  type Path,
-  PathApi,
-  type TElement,
-  TextApi,
-} from '@udecode/plate';
+import React, { useMemo } from 'react';
+
+import type { TSuggestionText } from '@udecode/plate-suggestion';
 import type {
   PlateRenderElementProps,
   RenderNodeWrapper,
 } from '@udecode/plate/react';
+
+import {
+  type NodeEntry,
+  type Path,
+  type TElement,
+  createZustandStore,
+  PathApi,
+  TextApi,
+} from '@udecode/plate';
+import { type TCommentText, getDraftCommentKey } from '@udecode/plate-comments';
+import { CommentsPlugin } from '@udecode/plate-comments/react';
+import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import {
   useEditorPlugin,
   useEditorRef,
   usePluginOption,
   useStoreValue,
 } from '@udecode/plate/react';
-import { getDraftCommentKey,type TCommentText } from '@udecode/plate-comments';
-import { CommentsPlugin } from '@udecode/plate-comments/react';
-import type { TSuggestionText } from '@udecode/plate-suggestion';
-import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import {
   MessageSquareTextIcon,
   MessagesSquareIcon,
   PencilLineIcon,
 } from 'lucide-react';
-import React, { useMemo } from 'react';
 
 import {
   type CommentsConfig,
@@ -47,7 +49,7 @@ import {
   isResolvedSuggestion,
   useResolveSuggestion,
 } from './block-suggestion';
-import { Comment,type TComment } from './comment';
+import { type TComment, Comment } from './comment';
 import { CommentCreateForm } from './comment-create-form';
 
 export interface TDiscussion {
@@ -343,7 +345,7 @@ const BlockCommentsContent = ({
         )}
 
         <PopoverContent
-          className="max-h-[min(50dvh,calc(-24px+var(--radix-popper-available-height)))] w-[380px] min-w-[130px] max-w-[calc(100vw-24px)] overflow-y-auto p-0 data-[state=closed]:opacity-0"
+          className="max-h-[min(50dvh,calc(-24px+var(--radix-popper-available-height)))] w-[380px] max-w-[calc(100vw-24px)] min-w-[130px] overflow-y-auto p-0 data-[state=closed]:opacity-0"
           onCloseAutoFocus={(e) => e.preventDefault()}
           onOpenAutoFocus={(e) => e.preventDefault()}
           align="center"
@@ -395,7 +397,7 @@ const BlockCommentsContent = ({
             <PopoverTrigger asChild>
               <Button
                 variant="ghost"
-                className="ml-1 mt-1 flex h-6 gap-1 px-1.5 py-0 text-muted-foreground/80 hover:text-muted-foreground/80 data-[active=true]:bg-muted"
+                className="mt-1 ml-1 flex h-6 gap-1 px-1.5 py-0 text-muted-foreground/80 hover:text-muted-foreground/80 data-[active=true]:bg-muted"
                 data-active={open}
                 contentEditable={false}
               >

@@ -1,19 +1,22 @@
 'use client';
 
+import React, { useMemo, useState } from 'react';
+
+import type {
+  TResolvedSuggestion,
+  TSuggestionElement,
+  TSuggestionText,
+} from '@udecode/plate-suggestion';
+
 import { cn } from '@udecode/cn';
 import {
-  ElementApi,
   type NodeEntry,
   type Path,
-  PathApi,
   type TElement,
+  ElementApi,
+  PathApi,
   TextApi,
 } from '@udecode/plate';
-import {
-  ParagraphPlugin,
-  useEditorPlugin,
-  useStoreSelect,
-} from '@udecode/plate/react';
 import { BlockquotePlugin } from '@udecode/plate-block-quote/react';
 import { CalloutPlugin } from '@udecode/plate-callout/react';
 import { CodeBlockPlugin } from '@udecode/plate-code-block/react';
@@ -31,11 +34,6 @@ import {
   MediaEmbedPlugin,
   VideoPlugin,
 } from '@udecode/plate-media/react';
-import type {
-  TResolvedSuggestion,
-  TSuggestionElement,
-  TSuggestionText,
-} from '@udecode/plate-suggestion';
 import {
   acceptSuggestion,
   getSuggestionKey,
@@ -45,19 +43,23 @@ import {
 import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import { TablePlugin } from '@udecode/plate-table/react';
 import { TogglePlugin } from '@udecode/plate-toggle/react';
+import {
+  ParagraphPlugin,
+  useEditorPlugin,
+  useStoreSelect,
+} from '@udecode/plate/react';
 import { CheckIcon, XIcon } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
 
 import { suggestionPlugin } from '@/components/editor/plugins/suggestion-plugin';
 
 import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 import {
-  discussionStore,
   type TDiscussion,
+  discussionStore,
   useFakeUserInfo,
 } from './block-discussion';
 import { Button } from './button';
-import { Comment, formatCommentDate,type TComment } from './comment';
+import { type TComment, Comment, formatCommentDate } from './comment';
 import { CommentCreateForm } from './comment-create-form';
 
 export interface ResolvedSuggestion extends TResolvedSuggestion {
@@ -147,7 +149,7 @@ export const BlockSuggestionCard = ({
             <AvatarImage alt={userInfo?.name} src={userInfo?.avatarUrl} />
             <AvatarFallback>{userInfo?.name?.[0]}</AvatarFallback>
           </Avatar>
-          <h4 className="mx-2 text-sm font-semibold leading-none">
+          <h4 className="mx-2 text-sm leading-none font-semibold">
             {userInfo?.name}
           </h4>
           <div className="text-xs leading-none text-muted-foreground/80">
@@ -157,7 +159,7 @@ export const BlockSuggestionCard = ({
           </div>
         </div>
 
-        <div className="relative mb-4 mt-1 pl-[32px]">
+        <div className="relative mt-1 mb-4 pl-[32px]">
           <div className="flex flex-col gap-2">
             {suggestion.type === 'remove' && (
               <React.Fragment>
@@ -254,7 +256,7 @@ export const BlockSuggestionCard = ({
         ))}
 
         {hovering && (
-          <div className="absolute right-4 top-4 flex gap-2">
+          <div className="absolute top-4 right-4 flex gap-2">
             <Button
               variant="ghost"
               className="h-6 p-1 text-muted-foreground"

@@ -4,10 +4,12 @@ import { faker } from "@faker-js/faker";
 import type { TElement } from "@udecode/plate";
 import { CopilotPlugin } from "@udecode/plate-ai/react";
 import { serializeMd, stripMarkdown } from "@udecode/plate-markdown";
+import { MarkdownPlugin } from "@udecode/plate-markdown";
 
 import { GhostText } from "@/components/plate-ui/ghost-text";
 
 export const copilotPlugins = [
+  MarkdownPlugin.configure({ options: {} }),
   CopilotPlugin.configure(({ api }) => ({
     options: {
       completeOptions: {

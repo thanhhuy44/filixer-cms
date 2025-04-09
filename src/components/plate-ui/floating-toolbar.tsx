@@ -1,20 +1,21 @@
 'use client';
 
+import React from 'react';
+
 import { cn, withRef } from '@udecode/cn';
+import {
+  type FloatingToolbarState,
+  flip,
+  offset,
+  useFloatingToolbar,
+  useFloatingToolbarState,
+} from '@udecode/plate-floating';
 import {
   useComposedRef,
   useEditorId,
   useEventEditorValue,
   usePluginOption,
 } from '@udecode/plate/react';
-import {
-  flip,
-  type FloatingToolbarState,
-  offset,
-  useFloatingToolbar,
-  useFloatingToolbarState,
-} from '@udecode/plate-floating';
-import React from 'react';
 
 import { Toolbar } from './toolbar';
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 "use client";
 
 import { withProps } from "@udecode/cn";
@@ -22,6 +23,7 @@ import { BaseHorizontalRulePlugin } from "@udecode/plate-horizontal-rule";
 import { BaseIndentPlugin } from "@udecode/plate-indent";
 import { BaseIndentListPlugin } from "@udecode/plate-indent-list";
 import { BaseLinkPlugin } from "@udecode/plate-link";
+import { MarkdownPlugin } from "@udecode/plate-markdown";
 import React, { memo } from "react";
 
 import {
@@ -91,6 +93,7 @@ const plugins = [
       },
     },
   }),
+  MarkdownPlugin.configure({ options: {} }),
 ];
 
 export const AIChatEditor = memo(({ content }: { content: string }) => {

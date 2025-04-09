@@ -1,9 +1,10 @@
 'use client';
 
-import { useEditorPlugin } from '@udecode/plate/react';
-import { getDraftCommentKey } from '@udecode/plate-comments';
-import { MessageSquareTextIcon } from 'lucide-react';
 import React from 'react';
+
+import { getDraftCommentKey } from '@udecode/plate-comments';
+import { useEditorPlugin } from '@udecode/plate/react';
+import { MessageSquareTextIcon } from 'lucide-react';
 
 import { commentsPlugin } from '@/components/editor/plugins/comments-plugin';
 

@@ -1,6 +1,9 @@
 'use client';
 
+import * as React from 'react';
+
 import type { DialogProps } from '@radix-ui/react-dialog';
+
 import { Command as CommandPrimitive } from '@udecode/cmdk';
 import {
   cn,
@@ -11,7 +14,6 @@ import {
 } from '@udecode/cn';
 import { cva } from 'class-variance-authority';
 import { Search } from 'lucide-react';
-import * as React from 'react';
 
 import {
   Dialog,
@@ -22,14 +24,14 @@ import {
 import { inputVariants } from './input';
 
 const commandVariants = cva(
-  'focus-visible:outline-hidden flex size-full flex-col rounded-md bg-popover text-popover-foreground',
+  'flex size-full flex-col rounded-md bg-popover text-popover-foreground focus-visible:outline-hidden',
   {
     defaultVariants: {
       variant: 'default',
     },
     variants: {
       variant: {
-        combobox: 'has-data-readonly:w-fit overflow-visible bg-transparent',
+        combobox: 'overflow-visible bg-transparent has-data-readonly:w-fit',
         default: 'overflow-hidden',
       },
     },
@@ -48,7 +50,7 @@ export function CommandDialog({ children, ...props }: DialogProps) {
         <DialogDescription className="sr-only">
           Search through commands and documentation using the command menu
         </DialogDescription>
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:size-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:size-5">
+        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:size-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:size-5">
           {children}
         </Command>
       </DialogContent>

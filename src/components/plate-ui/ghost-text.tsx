@@ -1,8 +1,9 @@
 'use client';
 
-import { useElement, usePluginOption } from '@udecode/plate/react';
-import { CopilotPlugin } from '@udecode/plate-ai/react';
 import React from 'react';
+
+import { CopilotPlugin } from '@udecode/plate-ai/react';
+import { useElement, usePluginOption } from '@udecode/plate/react';
 
 export const GhostText = () => {
   const element = useElement();

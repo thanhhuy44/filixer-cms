@@ -1,9 +1,11 @@
-import { cn } from '@udecode/cn';
-import { SlateElement,type SlateElementProps } from '@udecode/plate';
+import React from 'react';
+
 import type { TEquationElement } from '@udecode/plate-math';
+
+import { cn } from '@udecode/cn';
+import { type SlateElementProps, SlateElement } from '@udecode/plate';
 import { getEquationHtml } from '@udecode/plate-math';
 import { RadicalIcon } from 'lucide-react';
-import React from 'react';
 
 export function EquationElementStatic({
   children,
@@ -42,7 +44,7 @@ export function EquationElementStatic({
             }}
           />
         ) : (
-          <div className="flex h-7 w-full items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+          <div className="flex h-7 w-full items-center gap-2 text-sm whitespace-nowrap text-muted-foreground">
             <RadicalIcon className="size-6 text-muted-foreground/80" />
             <div>Add a Tex equation</div>
           </div>

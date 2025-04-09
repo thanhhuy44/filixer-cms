@@ -1,18 +1,9 @@
 'use client';
 
+import React, { useMemo } from 'react';
+
 import { cn, withRef } from '@udecode/cn';
 import { isType } from '@udecode/plate';
-import {
-  MemoizedChildren,
-  ParagraphPlugin,
-  type PlateRenderElementProps,
-  type RenderNodeWrapper,
-  useEditorRef,
-  useElement,
-  usePath,
-  usePluginOption,
-} from '@udecode/plate/react';
-import { useReadOnly, useSelected } from '@udecode/plate/react';
 import { BlockquotePlugin } from '@udecode/plate-block-quote/react';
 import { CodeBlockPlugin } from '@udecode/plate-code-block/react';
 import { useDraggable, useDropLine } from '@udecode/plate-dnd';
@@ -31,8 +22,18 @@ import {
   TableRowPlugin,
 } from '@udecode/plate-table/react';
 import { TogglePlugin } from '@udecode/plate-toggle/react';
+import {
+  type PlateRenderElementProps,
+  type RenderNodeWrapper,
+  MemoizedChildren,
+  ParagraphPlugin,
+  useEditorRef,
+  useElement,
+  usePath,
+  usePluginOption,
+} from '@udecode/plate/react';
+import { useReadOnly, useSelected } from '@udecode/plate/react';
 import { GripVertical } from 'lucide-react';
-import React, { useMemo } from 'react';
 
 import { STRUCTURAL_TYPES } from '@/components/editor/transforms';
 
@@ -219,7 +220,7 @@ const DragHandle = React.memo(() => {
   return (
     <TooltipButton
       variant="ghost"
-      className="w-4.5 h-6 p-0"
+      className="h-6 w-4.5 p-0"
       onClick={() => {
         editor
           .getApi(BlockSelectionPlugin)

@@ -1,23 +1,24 @@
 'use client';
 
+import React from 'react';
+
 import { cn } from '@udecode/cn';
-import { useFormInputProps } from '@udecode/plate/react';
 import {
+  type UseVirtualFloatingOptions,
   flip,
   offset,
-  type UseVirtualFloatingOptions,
 } from '@udecode/plate-floating';
 import {
-  FloatingLinkUrlInput,
   type LinkFloatingToolbarState,
+  FloatingLinkUrlInput,
   LinkOpenButton,
   useFloatingLinkEdit,
   useFloatingLinkEditState,
   useFloatingLinkInsert,
   useFloatingLinkInsertState,
 } from '@udecode/plate-link/react';
+import { useFormInputProps } from '@udecode/plate/react';
 import { ExternalLink, Link, Text, Unlink } from 'lucide-react';
-import React from 'react';
 
 import { buttonVariants } from './button';
 import { inputVariants } from './input';
@@ -76,7 +77,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
   const input = (
     <div className="flex w-[330px] flex-col" {...inputProps}>
       <div className="flex items-center">
-        <div className="flex items-center pl-2 pr-1 text-muted-foreground">
+        <div className="flex items-center pr-1 pl-2 text-muted-foreground">
           <Link className="size-4" />
         </div>
 
@@ -88,7 +89,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
       </div>
       <Separator className="my-1" />
       <div className="flex items-center">
-        <div className="flex items-center pl-2 pr-1 text-muted-foreground">
+        <div className="flex items-center pr-1 pl-2 text-muted-foreground">
           <Text className="size-4" />
         </div>
         <input

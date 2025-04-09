@@ -1,9 +1,11 @@
 'use client';
 
-import { cn } from '@udecode/cn';
-import { type Emoji, EmojiSettings,type GridRow } from '@udecode/plate-emoji';
-import type { UseEmojiPickerType } from '@udecode/plate-emoji/react';
 import { memo, useCallback } from 'react';
+
+import type { UseEmojiPickerType } from '@udecode/plate-emoji/react';
+
+import { cn } from '@udecode/cn';
+import { type Emoji, type GridRow, EmojiSettings } from '@udecode/plate-emoji';
 
 export type EmojiButtonProps = {
   emoji: Emoji;
@@ -116,7 +118,7 @@ export function EmojiPickerContent({
             style={{ width: getRowWidth }}
             data-id={categoryId}
           >
-            <div className="z-1 backdrop-blur-xs sticky -top-px bg-popover/90 p-1 py-2 text-sm font-semibold">
+            <div className="sticky -top-px z-1 bg-popover/90 p-1 py-2 text-sm font-semibold backdrop-blur-xs">
               {i18n.categories[categoryId]}
             </div>
             <div
@@ -152,7 +154,7 @@ export function EmojiPickerContent({
   const SearchList = useCallback(() => {
     return (
       <div style={{ width: getRowWidth }} data-id="search">
-        <div className="z-1 backdrop-blur-xs sticky -top-px bg-popover/90 p-1 py-2 text-sm font-semibold text-card-foreground">
+        <div className="sticky -top-px z-1 bg-popover/90 p-1 py-2 text-sm font-semibold text-card-foreground backdrop-blur-xs">
           {i18n.searchResult}
         </div>
         <div className="relative flex flex-wrap">

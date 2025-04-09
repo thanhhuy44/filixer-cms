@@ -1,6 +1,15 @@
 'use client';
 
+import React, { useEffect } from 'react';
+
 import type { WithRequiredKey } from '@udecode/plate';
+
+import {
+  FloatingMedia as FloatingMediaPrimitive,
+  FloatingMediaStore,
+  useFloatingMediaValue,
+  useImagePreviewValue,
+} from '@udecode/plate-media/react';
 import {
   useEditorRef,
   useEditorSelector,
@@ -9,14 +18,7 @@ import {
   useRemoveNodeButton,
   useSelected,
 } from '@udecode/plate/react';
-import {
-  FloatingMedia as FloatingMediaPrimitive,
-  FloatingMediaStore,
-  useFloatingMediaValue,
-  useImagePreviewValue,
-} from '@udecode/plate-media/react';
 import { Link, Trash2Icon } from 'lucide-react';
-import React, { useEffect } from 'react';
 
 import { Button, buttonVariants } from './button';
 import { CaptionButton } from './caption';
@@ -66,7 +68,7 @@ export function MediaPopover({ children, plugin }: MediaPopoverProps) {
         {isEditing ? (
           <div className="flex w-[330px] flex-col">
             <div className="flex items-center">
-              <div className="flex items-center pl-2 pr-1 text-muted-foreground">
+              <div className="flex items-center pr-1 pl-2 text-muted-foreground">
                 <Link className="size-4" />
               </div>
 

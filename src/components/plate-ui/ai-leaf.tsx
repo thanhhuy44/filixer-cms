@@ -1,8 +1,9 @@
 'use client';
 
+import React from 'react';
+
 import { cn } from '@udecode/cn';
 import { PlateLeaf } from '@udecode/plate/react';
-import React from 'react';
 
 export function AILeaf({
   className,

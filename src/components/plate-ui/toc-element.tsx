@@ -1,11 +1,11 @@
 'use client';
 
 import { cn, withRef } from '@udecode/cn';
-import { PlateElement } from '@udecode/plate/react';
 import {
   useTocElement,
   useTocElementState,
 } from '@udecode/plate-heading/react';
+import { PlateElement } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
 
 import { Button } from './button';

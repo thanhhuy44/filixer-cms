@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import { withRef } from "@udecode/cn";
-import { useEditorPlugin } from "@udecode/plate/react";
-import { AIChatPlugin } from "@udecode/plate-ai/react";
-import React from "react";
+import React from 'react';
 
-import { ToolbarButton } from "./toolbar";
+import { withRef } from '@udecode/cn';
+import { AIChatPlugin } from '@udecode/plate-ai/react';
+import { useEditorPlugin } from '@udecode/plate/react';
+
+import { ToolbarButton } from './toolbar';
 
 export const AIToolbarButton = withRef<typeof ToolbarButton>(
   ({ children, ...rest }, ref) => {

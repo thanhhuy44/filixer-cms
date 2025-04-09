@@ -1,14 +1,16 @@
-import { cn } from '@udecode/cn';
+import React from 'react';
+
 import type { SlateEditor, SlateElementProps, TElement } from '@udecode/plate';
+
+import { cn } from '@udecode/cn';
 import { NodeApi, SlateElement } from '@udecode/plate';
 import {
-  BaseTocPlugin,
   type Heading,
+  BaseTocPlugin,
   HEADING_KEYS,
   isHeading,
 } from '@udecode/plate-heading';
 import { cva } from 'class-variance-authority';
-import React from 'react';
 
 import { Button } from './button';
 

@@ -1,12 +1,13 @@
 'use client';
 
-import { cn, withRef } from '@udecode/cn';
-import { EraserIcon } from 'lucide-react';
 import React from 'react';
 
+import { cn, withRef } from '@udecode/cn';
+import { EraserIcon } from 'lucide-react';
+
 import {
-  ColorDropdownMenuItems,
   type TColor,
+  ColorDropdownMenuItems,
 } from './color-dropdown-menu-items';
 import { ColorCustom } from './colors-custom';
 import { DropdownMenuGroup, DropdownMenuItem } from './dropdown-menu';

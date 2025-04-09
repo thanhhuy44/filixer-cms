@@ -2,16 +2,16 @@
 
 import {
   type ExtendConfig,
+  type Path,
   isSlateEditor,
   isSlateElement,
   isSlateString,
-  type Path,
 } from '@udecode/plate';
-import { toTPlatePlugin } from '@udecode/plate/react';
 import {
   type BaseSuggestionConfig,
   BaseSuggestionPlugin,
 } from '@udecode/plate-suggestion';
+import { toTPlatePlugin } from '@udecode/plate/react';
 
 import { BlockSuggestion } from '@/components/plate-ui/block-suggestion';
 

@@ -1,6 +1,8 @@
-import { cn } from '@udecode/cn';
-import type { SlateRenderElementProps } from '@udecode/plate';
 import React from 'react';
+
+import type { SlateRenderElementProps } from '@udecode/plate';
+
+import { cn } from '@udecode/cn';
 
 import { CheckboxStatic } from './checkbox-static';
 
@@ -10,7 +12,7 @@ export const TodoMarkerStatic = ({
   return (
     <div contentEditable={false}>
       <CheckboxStatic
-        className="pointer-events-none absolute -left-6 top-1"
+        className="pointer-events-none absolute top-1 -left-6"
         checked={element.checked as boolean}
       />
     </div>

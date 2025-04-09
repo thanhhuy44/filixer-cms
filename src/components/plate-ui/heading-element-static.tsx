@@ -1,8 +1,10 @@
-import { cn } from '@udecode/cn';
+import * as React from 'react';
+
 import type { SlateElementProps } from '@udecode/plate';
+
+import { cn } from '@udecode/cn';
 import { SlateElement } from '@udecode/plate';
 import { cva } from 'class-variance-authority';
-import * as React from 'react';
 
 interface HeadingElementViewProps extends SlateElementProps {
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

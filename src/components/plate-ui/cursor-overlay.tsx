@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+
 import { cn } from '@udecode/cn';
 import { RangeApi } from '@udecode/plate';
 import {
@@ -7,7 +9,6 @@ import {
   type CursorOverlayState,
   useCursorOverlay,
 } from '@udecode/plate-selection/react';
-import React from 'react';
 
 export function Cursor({
   id,

@@ -1,14 +1,16 @@
 'use client';
 
+import React from 'react';
+
 import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
+
+import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import {
   useEditorRef,
   usePlateState,
   usePluginOption,
 } from '@udecode/plate/react';
-import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import { Eye, Pen, PencilLineIcon } from 'lucide-react';
-import React from 'react';
 
 import {
   DropdownMenu,

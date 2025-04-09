@@ -1,11 +1,27 @@
 'use client';
 
+import React, {
+  type HTMLAttributes,
+  type ReactNode,
+  type RefObject,
+  createContext,
+  forwardRef,
+  startTransition,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+
+import type { PointRef, TElement } from '@udecode/plate';
+
 import {
+  type ComboboxItemProps,
   Combobox,
   ComboboxGroup,
   ComboboxGroupLabel,
   ComboboxItem,
-  type ComboboxItemProps,
   ComboboxPopover,
   ComboboxProvider,
   ComboboxRow,
@@ -14,28 +30,14 @@ import {
   useComboboxStore,
 } from '@ariakit/react';
 import { cn, withCn } from '@udecode/cn';
-import type { PointRef, TElement } from '@udecode/plate';
-import { useComposedRef, useEditorRef } from '@udecode/plate/react';
 import { filterWords } from '@udecode/plate-combobox';
 import {
-  useComboboxInput,
   type UseComboboxInputResult,
+  useComboboxInput,
   useHTMLInputCursorState,
 } from '@udecode/plate-combobox/react';
+import { useComposedRef, useEditorRef } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
-import React, {
-  createContext,
-  forwardRef,
-  type HTMLAttributes,
-  type ReactNode,
-  type RefObject,
-  startTransition,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
 
 type FilterFn = (
   item: { value: string; group?: string; keywords?: string[]; label?: string },
@@ -280,7 +282,7 @@ const InlineComboboxContent: typeof ComboboxPopover = ({
 };
 
 const comboboxItemVariants = cva(
-  'relative mx-1 flex h-[28px] select-none items-center rounded-sm px-2 text-sm text-foreground outline-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'relative mx-1 flex h-[28px] items-center rounded-sm px-2 text-sm text-foreground outline-none select-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     defaultVariants: {
       interactive: true,

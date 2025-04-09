@@ -1,5 +1,9 @@
 'use client';
 
+import React from 'react';
+
+import type { TMentionElement } from '@udecode/plate-mention';
+
 import { cn, withRef } from '@udecode/cn';
 import { getHandler, IS_APPLE } from '@udecode/plate';
 import {
@@ -8,8 +12,6 @@ import {
   useReadOnly,
   useSelected,
 } from '@udecode/plate/react';
-import type { TMentionElement } from '@udecode/plate-mention';
-import React from 'react';
 
 import { useMounted } from '@/hooks/use-mounted';
 

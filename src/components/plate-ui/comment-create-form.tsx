@@ -1,9 +1,9 @@
 'use client';
 
+import React, { useEffect, useMemo } from 'react';
+
 import { cn, withProps } from '@udecode/cn';
-import { nanoid, NodeApi,type Value } from '@udecode/plate';
-import { Plate, useEditorRef, useStoreSelect } from '@udecode/plate/react';
-import { type CreatePlateEditorOptions, PlateLeaf } from '@udecode/plate/react';
+import { type Value, nanoid, NodeApi } from '@udecode/plate';
 import { AIPlugin } from '@udecode/plate-ai/react';
 import {
   BasicMarksPlugin,
@@ -22,8 +22,9 @@ import {
   MentionInputPlugin,
   MentionPlugin,
 } from '@udecode/plate-mention/react';
+import { Plate, useEditorRef, useStoreSelect } from '@udecode/plate/react';
+import { type CreatePlateEditorOptions, PlateLeaf } from '@udecode/plate/react';
 import { ArrowUpIcon } from 'lucide-react';
-import React, { useEffect, useMemo } from 'react';
 
 import { useCreateEditor } from '@/components/editor/use-create-editor';
 import {
@@ -32,15 +33,16 @@ import {
   AvatarImage,
 } from '@/components/plate-ui/avatar';
 
-import { AILeaf } from './ai-leaf';
 import type { TDiscussion } from './block-discussion';
+import type { TComment } from './comment';
+
+import { AILeaf } from './ai-leaf';
 import {
   discussionStore,
   useFakeCurrentUserId,
   useFakeUserInfo,
 } from './block-discussion';
 import { Button } from './button';
-import type { TComment } from './comment';
 import { DateElement } from './date-element';
 import { Editor, EditorContainer } from './editor';
 import { EmojiInputElement } from './emoji-input-element';
@@ -233,7 +235,7 @@ export function CommentCreateForm({
 
   return (
     <div className={cn('flex w-full', className)}>
-      <div className="mr-1 mt-1 shrink-0">
+      <div className="mt-1 mr-1 shrink-0">
         {/* Replace to your own backend or refer to potion */}
         <Avatar className="size-6">
           <AvatarImage alt={userInfo?.name} src={userInfo?.avatarUrl} />
@@ -251,7 +253,7 @@ export function CommentCreateForm({
           <EditorContainer variant="comment">
             <Editor
               variant="comment"
-              className="min-h-[25px] grow pr-8 pt-0.5"
+              className="min-h-[25px] grow pt-0.5 pr-8"
               placeholder="Reply..."
               autoComplete="off"
               autoFocus={autoFocus}
@@ -260,7 +262,7 @@ export function CommentCreateForm({
             <Button
               size="icon"
               variant="ghost"
-              className="absolute bottom-0 right-0 ml-auto shrink-0"
+              className="absolute right-0 bottom-0 ml-auto shrink-0"
               disabled={commentContent.trim().length === 0}
               onClick={(e) => {
                 e.stopPropagation();

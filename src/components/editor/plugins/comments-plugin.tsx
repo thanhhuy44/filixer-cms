@@ -1,12 +1,13 @@
 'use client';
 
 import type { ExtendConfig, Path } from '@udecode/plate';
+
 import { isSlateString } from '@udecode/plate';
-import { toTPlatePlugin, useHotkeys } from '@udecode/plate/react';
 import {
   type BaseCommentsConfig,
   BaseCommentsPlugin,
 } from '@udecode/plate-comments';
+import { toTPlatePlugin, useHotkeys } from '@udecode/plate/react';
 
 export type CommentsConfig = ExtendConfig<
   BaseCommentsConfig,

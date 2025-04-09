@@ -1,11 +1,13 @@
 'use client';
 
-import { cn, withRef } from '@udecode/cn';
-import { PlateElement, useElement, useSelected } from '@udecode/plate/react';
-import type { TEquationElement } from '@udecode/plate-math';
-import { useEquationElement } from '@udecode/plate-math/react';
-import { RadicalIcon } from 'lucide-react';
 import React, { useRef, useState } from 'react';
+
+import type { TEquationElement } from '@udecode/plate-math';
+
+import { cn, withRef } from '@udecode/cn';
+import { useEquationElement } from '@udecode/plate-math/react';
+import { PlateElement, useElement, useSelected } from '@udecode/plate/react';
+import { RadicalIcon } from 'lucide-react';
 
 import { EquationPopoverContent } from './equation-popover';
 import { Popover, PopoverTrigger } from './popover';
@@ -52,7 +54,7 @@ export const EquationElement = withRef<typeof PlateElement>(
               {element.texExpression.length > 0 ? (
                 <span ref={katexRef} />
               ) : (
-                <div className="flex h-7 w-full items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+                <div className="flex h-7 w-full items-center gap-2 text-sm whitespace-nowrap text-muted-foreground">
                   <RadicalIcon className="size-6 text-muted-foreground/80" />
                   <div>Add a Tex equation</div>
                 </div>

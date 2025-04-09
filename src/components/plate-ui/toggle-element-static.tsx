@@ -1,8 +1,10 @@
-import { cn } from '@udecode/cn';
+import React from 'react';
+
 import type { SlateElementProps } from '@udecode/plate';
+
+import { cn } from '@udecode/cn';
 import { SlateElement } from '@udecode/plate';
 import { ChevronRight } from 'lucide-react';
-import React from 'react';
 
 export function ToggleElementStatic({
   children,
@@ -12,7 +14,7 @@ export function ToggleElementStatic({
   return (
     <SlateElement className={cn(className, 'pl-6')} {...props}>
       <div
-        className="absolute -left-0.5 top-0 size-6 cursor-pointer select-none items-center justify-center rounded-md p-px text-muted-foreground transition-colors hover:bg-accent [&_svg]:size-4"
+        className="absolute top-0 -left-0.5 size-6 cursor-pointer items-center justify-center rounded-md p-px text-muted-foreground transition-colors select-none hover:bg-accent [&_svg]:size-4"
         contentEditable={false}
       >
         <ChevronRight

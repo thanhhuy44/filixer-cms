@@ -16,8 +16,9 @@ export function PlateEditor() {
     <DndProvider backend={HTML5Backend}>
       <Plate editor={editor}>
         <EditorContainer>
-          <Editor variant="default" />
+          <Editor variant="demo" />
         </EditorContainer>
+
         <SettingsDialog />
       </Plate>
     </DndProvider>

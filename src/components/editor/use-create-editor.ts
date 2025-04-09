@@ -1,14 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { withProps } from '@udecode/cn';
 import type { Value } from '@udecode/plate';
-import {
-  type CreatePlateEditorOptions,
-  ParagraphPlugin,
-  PlateLeaf,
-  usePlateEditor,
-} from '@udecode/plate/react';
+
+import { withProps } from '@udecode/cn';
 import { AIPlugin } from '@udecode/plate-ai/react';
 import {
   BoldPlugin,
@@ -61,6 +55,12 @@ import {
   TableRowPlugin,
 } from '@udecode/plate-table/react';
 import { TogglePlugin } from '@udecode/plate-toggle/react';
+import {
+  type CreatePlateEditorOptions,
+  ParagraphPlugin,
+  PlateLeaf,
+  usePlateEditor,
+} from '@udecode/plate/react';
 
 import { copilotPlugins } from '@/components/editor/plugins/copilot-plugins';
 import { editorPlugins } from '@/components/editor/plugins/editor-plugins';

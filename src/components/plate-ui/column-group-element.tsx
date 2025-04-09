@@ -1,6 +1,10 @@
 'use client';
 
+import React from 'react';
+
 import { cn, withRef } from '@udecode/cn';
+import { type TColumnElement, setColumns } from '@udecode/plate-layout';
+import { useDebouncePopoverOpen } from '@udecode/plate-layout/react';
 import {
   PlateElement,
   useEditorRef,
@@ -8,10 +12,7 @@ import {
   useReadOnly,
   useRemoveNodeButton,
 } from '@udecode/plate/react';
-import { setColumns,type TColumnElement } from '@udecode/plate-layout';
-import { useDebouncePopoverOpen } from '@udecode/plate-layout/react';
 import { type LucideProps, Trash2Icon } from 'lucide-react';
-import React from 'react';
 
 import { Button } from './button';
 import { Popover, PopoverAnchor, PopoverContent } from './popover';

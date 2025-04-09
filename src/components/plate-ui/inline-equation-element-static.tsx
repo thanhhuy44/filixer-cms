@@ -1,8 +1,10 @@
-import { cn } from '@udecode/cn';
-import { SlateElement,type SlateElementProps } from '@udecode/plate';
-import type { TEquationElement } from '@udecode/plate-math';
-import { getEquationHtml } from '@udecode/plate-math';
 import React from 'react';
+
+import type { TEquationElement } from '@udecode/plate-math';
+
+import { cn } from '@udecode/cn';
+import { type SlateElementProps, SlateElement } from '@udecode/plate';
+import { getEquationHtml } from '@udecode/plate-math';
 
 export function InlineEquationElementStatic({
   children,

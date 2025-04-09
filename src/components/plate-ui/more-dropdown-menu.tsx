@@ -1,19 +1,21 @@
 'use client';
 
+import React from 'react';
+
 import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
-import { useEditorRef } from '@udecode/plate/react';
+
 import {
   SubscriptPlugin,
   SuperscriptPlugin,
 } from '@udecode/plate-basic-marks/react';
 import { KbdPlugin } from '@udecode/plate-kbd/react';
+import { useEditorRef } from '@udecode/plate/react';
 import {
   KeyboardIcon,
   MoreHorizontalIcon,
   SubscriptIcon,
   SuperscriptIcon,
 } from 'lucide-react';
-import React from 'react';
 
 import {
   DropdownMenu,

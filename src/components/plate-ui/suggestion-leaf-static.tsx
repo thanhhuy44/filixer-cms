@@ -1,11 +1,12 @@
-import { cn } from '@udecode/cn';
-import { SlateLeaf,type SlateLeafProps } from '@udecode/plate';
-import { useEditorPlugin } from '@udecode/plate/react';
-import {
-  BaseSuggestionPlugin,
-  type TSuggestionText,
-} from '@udecode/plate-suggestion';
 import React from 'react';
+
+import { cn } from '@udecode/cn';
+import { type SlateLeafProps, SlateLeaf } from '@udecode/plate';
+import {
+  type TSuggestionText,
+  BaseSuggestionPlugin,
+} from '@udecode/plate-suggestion';
+import { useEditorPlugin } from '@udecode/plate/react';
 
 export function SuggestionLeafStatic(props: SlateLeafProps) {
   const { children, className, leaf } = props;

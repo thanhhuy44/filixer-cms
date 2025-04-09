@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import emojiMartData from "@emoji-mart/data";
@@ -16,6 +17,7 @@ import { HorizontalRulePlugin } from "@udecode/plate-horizontal-rule/react";
 import { JuicePlugin } from "@udecode/plate-juice";
 import { KbdPlugin } from "@udecode/plate-kbd/react";
 import { ColumnPlugin } from "@udecode/plate-layout/react";
+import { MarkdownPlugin } from "@udecode/plate-markdown";
 import { SlashPlugin } from "@udecode/plate-slash-command/react";
 import { TogglePlugin } from "@udecode/plate-toggle/react";
 import { TrailingBlockPlugin } from "@udecode/plate-trailing-block";
@@ -114,6 +116,7 @@ export const editorPlugins = [
 
   // Deserialization
   DocxPlugin,
+  MarkdownPlugin.configure({ options: {} }),
   JuicePlugin,
 
   // UI
