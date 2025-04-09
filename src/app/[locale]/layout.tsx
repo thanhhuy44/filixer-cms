@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import Providers from "@/providers";
 
@@ -24,11 +25,13 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class">
-          <Providers>
-            <NextIntlClientProvider messages={messages}>
-              {children}
-            </NextIntlClientProvider>
-          </Providers>
+          <NuqsAdapter>
+            <Providers>
+              <NextIntlClientProvider messages={messages}>
+                {children}
+              </NextIntlClientProvider>
+            </Providers>
+          </NuqsAdapter>
         </ThemeProvider>
       </body>
     </html>

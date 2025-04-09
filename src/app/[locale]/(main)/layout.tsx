@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 import { Footer, Header } from "@/components/layout";
 import AppSidebar from "@/components/layout/app-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { redirect } from "@/navigation";
 import { getServerAuthSession } from "@/utils/auth";
 
@@ -20,11 +20,11 @@ async function MainLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <div className="flex max-h-screen flex-1 flex-col gap-y-5 overflow-hidden">
+      <SidebarInset>
         <Header />
-        <div className="flex-1 overflow-hidden">{children}</div>
+        {children}
         <Footer />
-      </div>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
