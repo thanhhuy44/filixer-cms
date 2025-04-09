@@ -1,19 +1,17 @@
-'use client';
+"use client";
 
-import React from 'react';
-
-import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
-
-import { setAlign } from '@udecode/plate-alignment';
-import { useEditorRef, useSelectionFragmentProp } from '@udecode/plate/react';
+import type { DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
+import { useEditorRef, useSelectionFragmentProp } from "@udecode/plate/react";
+import { setAlign } from "@udecode/plate-alignment";
 import {
   AlignCenterIcon,
   AlignJustifyIcon,
   AlignLeftIcon,
   AlignRightIcon,
-} from 'lucide-react';
+} from "lucide-react";
+import React from "react";
 
-import { STRUCTURAL_TYPES } from '@/components/editor/transforms';
+import { STRUCTURAL_TYPES } from "@/components/editor/transforms";
 
 import {
   DropdownMenu,
@@ -22,32 +20,32 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
   useOpenState,
-} from './dropdown-menu';
-import { ToolbarButton } from './toolbar';
+} from "./dropdown-menu";
+import { ToolbarButton } from "./toolbar";
 
 const items = [
   {
     icon: AlignLeftIcon,
-    value: 'left',
+    value: "left",
   },
   {
     icon: AlignCenterIcon,
-    value: 'center',
+    value: "center",
   },
   {
     icon: AlignRightIcon,
-    value: 'right',
+    value: "right",
   },
   {
     icon: AlignJustifyIcon,
-    value: 'justify',
+    value: "justify",
   },
 ];
 
 export function AlignDropdownMenu({ children, ...props }: DropdownMenuProps) {
   const editor = useEditorRef();
   const value = useSelectionFragmentProp({
-    defaultValue: 'start',
+    defaultValue: "start",
     structuralTypes: STRUCTURAL_TYPES,
     getProp: (node) => node.align,
   });
@@ -58,12 +56,11 @@ export function AlignDropdownMenu({ children, ...props }: DropdownMenuProps) {
 
   return (
     <DropdownMenu modal={false} {...openState} {...props}>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         <ToolbarButton pressed={openState.open} tooltip="Align" isDropdown>
           <IconValue />
         </ToolbarButton>
       </DropdownMenuTrigger>
-
       <DropdownMenuContent className="min-w-0" align="start">
         <DropdownMenuRadioGroup
           value={value}

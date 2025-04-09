@@ -1,6 +1,5 @@
 "use client";
 
-import { Plate } from "@udecode/plate/react";
 import { useForm } from "react-hook-form";
 
 import { PlateEditor } from "@/components/editor/plate-editor";
@@ -72,10 +71,12 @@ function AddArticleForm() {
             <FormItem>
               <FormLabel>Categories</FormLabel>
               <FormControl>
-                <MultiSelect
-                  options={[]}
-                  onValueChange={(e) => console.log(e)}
-                />
+                <div>
+                  <MultiSelect
+                    options={[]}
+                    onValueChange={(e) => console.log(e)}
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>

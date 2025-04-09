@@ -6,7 +6,7 @@ import AddArticleForm from "../(components)/add-article-form";
 
 function Page() {
   return (
-    <PageContainer>
+    <PageContainer scrollable={false}>
       <div className="flex flex-1 flex-col space-y-4 rounded-lg border p-4 shadow">
         <Heading title="Create new article" description="" />
         <Separator />

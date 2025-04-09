@@ -1,20 +1,8 @@
-'use client';
+"use client";
 
-import React, { useCallback, useState } from 'react';
-
-import type * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-
-import { PopoverAnchor } from '@radix-ui/react-popover';
-import { cn, withRef } from '@udecode/cn';
-import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
-import { type TTableElement, setCellBackground } from '@udecode/plate-table';
-import {
-  TablePlugin,
-  TableProvider,
-  useTableBordersDropdownMenuContentState,
-  useTableElement,
-  useTableMergeState,
-} from '@udecode/plate-table/react';
+import type * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import { PopoverAnchor } from "@radix-ui/react-popover";
+import { cn, withRef } from "@udecode/cn";
 import {
   PlateElement,
   useEditorPlugin,
@@ -26,7 +14,16 @@ import {
   useRemoveNodeButton,
   useSelected,
   withHOC,
-} from '@udecode/plate/react';
+} from "@udecode/plate/react";
+import { BlockSelectionPlugin } from "@udecode/plate-selection/react";
+import { setCellBackground, type TTableElement } from "@udecode/plate-table";
+import {
+  TablePlugin,
+  TableProvider,
+  useTableBordersDropdownMenuContentState,
+  useTableElement,
+  useTableMergeState,
+} from "@udecode/plate-table/react";
 import {
   ArrowDown,
   ArrowLeft,
@@ -39,10 +36,11 @@ import {
   SquareSplitHorizontalIcon,
   Trash2Icon,
   XIcon,
-} from 'lucide-react';
+} from "lucide-react";
+import React, { useCallback, useState } from "react";
 
-import { DEFAULT_COLORS } from './color-constants';
-import { ColorDropdownMenuItems } from './color-dropdown-menu-items';
+import { DEFAULT_COLORS } from "./color-constants";
+import { ColorDropdownMenuItems } from "./color-dropdown-menu-items";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -51,8 +49,8 @@ import {
   DropdownMenuItem,
   DropdownMenuPortal,
   DropdownMenuTrigger,
-} from './dropdown-menu';
-import { Popover, PopoverContent } from './popover';
+} from "./dropdown-menu";
+import { Popover, PopoverContent } from "./popover";
 import {
   BorderAll,
   BorderBottom,
@@ -60,8 +58,8 @@ import {
   BorderNone,
   BorderRight,
   BorderTop,
-} from './table-icons';
-import { Toolbar, ToolbarButton, ToolbarGroup } from './toolbar';
+} from "./table-icons";
+import { Toolbar, ToolbarButton, ToolbarGroup } from "./toolbar";
 
 export const TableElement = withHOC(
   TableProvider,
@@ -69,7 +67,7 @@ export const TableElement = withHOC(
     const readOnly = useReadOnly();
     const isSelectionAreaVisible = usePluginOption(
       BlockSelectionPlugin,
-      'isSelectionAreaVisible'
+      "isSelectionAreaVisible"
     );
     const hasControls = !readOnly && !isSelectionAreaVisible;
     const selected = useSelected();
@@ -83,8 +81,8 @@ export const TableElement = withHOC(
       <PlateElement
         className={cn(
           className,
-          'overflow-x-auto py-5',
-          hasControls && '-ml-2 *:data-[slot=block-selection]:left-2'
+          "overflow-x-auto py-5",
+          hasControls && "-ml-2 *:data-[slot=block-selection]:left-2"
         )}
         style={{ paddingLeft: marginLeft }}
         {...props}
@@ -93,8 +91,8 @@ export const TableElement = withHOC(
           <table
             ref={ref}
             className={cn(
-              'mr-0 ml-px table h-px table-fixed border-collapse',
-              isSelectingCell && 'selection:bg-transparent'
+              "mr-0 ml-px table h-px table-fixed border-collapse",
+              isSelectingCell && "selection:bg-transparent"
             )}
             {...tableProps}
           >
@@ -135,7 +133,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
           {...props}
         >
           <Toolbar
-            className="flex scrollbar-hide w-auto max-w-[80vw] flex-row overflow-x-auto rounded-md border bg-popover p-1 shadow-md print:hidden"
+            className="flex w-auto max-w-[80vw] flex-row overflow-x-auto rounded-md border bg-popover p-1 shadow-md scrollbar-hide print:hidden"
             contentEditable={false}
           >
             <ToolbarGroup>
@@ -162,7 +160,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
               )}
 
               <DropdownMenu modal={false}>
-                <DropdownMenuTrigger asChild>
+                <DropdownMenuTrigger>
                   <ToolbarButton tooltip="Cell borders">
                     <Grid2X2Icon />
                   </ToolbarButton>
@@ -269,7 +267,7 @@ export const TableBordersDropdownMenuContent = withRef<
   return (
     <DropdownMenuContent
       ref={ref}
-      className={cn('min-w-[220px]')}
+      className={cn("min-w-[220px]")}
       onCloseAutoFocus={(e) => {
         e.preventDefault();
         editor.tf.focus();
@@ -282,28 +280,28 @@ export const TableBordersDropdownMenuContent = withRef<
       <DropdownMenuGroup>
         <DropdownMenuCheckboxItem
           checked={hasTopBorder}
-          onCheckedChange={getOnSelectTableBorder('top')}
+          onCheckedChange={getOnSelectTableBorder("top")}
         >
           <BorderTop />
           <div>Top Border</div>
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={hasRightBorder}
-          onCheckedChange={getOnSelectTableBorder('right')}
+          onCheckedChange={getOnSelectTableBorder("right")}
         >
           <BorderRight />
           <div>Right Border</div>
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={hasBottomBorder}
-          onCheckedChange={getOnSelectTableBorder('bottom')}
+          onCheckedChange={getOnSelectTableBorder("bottom")}
         >
           <BorderBottom />
           <div>Bottom Border</div>
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={hasLeftBorder}
-          onCheckedChange={getOnSelectTableBorder('left')}
+          onCheckedChange={getOnSelectTableBorder("left")}
         >
           <BorderLeft />
           <div>Left Border</div>
@@ -313,14 +311,14 @@ export const TableBordersDropdownMenuContent = withRef<
       <DropdownMenuGroup>
         <DropdownMenuCheckboxItem
           checked={hasNoBorders}
-          onCheckedChange={getOnSelectTableBorder('none')}
+          onCheckedChange={getOnSelectTableBorder("none")}
         >
           <BorderNone />
           <div>No Border</div>
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={hasOuterBorders}
-          onCheckedChange={getOnSelectTableBorder('outer')}
+          onCheckedChange={getOnSelectTableBorder("outer")}
         >
           <BorderAll />
           <div>Outside Borders</div>
@@ -339,7 +337,7 @@ function ColorDropdownMenu({ children, tooltip }: ColorDropdownMenuProps) {
   const [open, setOpen] = useState(false);
 
   const editor = useEditorRef();
-  const selectedCells = usePluginOption(TablePlugin, 'selectedCells');
+  const selectedCells = usePluginOption(TablePlugin, "selectedCells");
 
   const onUpdateColor = useCallback(
     (color: string) => {
@@ -359,7 +357,7 @@ function ColorDropdownMenu({ children, tooltip }: ColorDropdownMenuProps) {
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         <ToolbarButton tooltip={tooltip}>{children}</ToolbarButton>
       </DropdownMenuTrigger>
 
