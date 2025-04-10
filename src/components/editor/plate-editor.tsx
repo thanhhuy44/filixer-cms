@@ -9,17 +9,19 @@ import { SettingsDialog } from "@/components/editor/settings";
 import { useCreateEditor } from "@/components/editor/use-create-editor";
 import { Editor, EditorContainer } from "@/components/plate-ui/editor";
 
-export function PlateEditor() {
+function PlateEditor() {
   const editor = useCreateEditor();
 
   return (
     <DndProvider backend={HTML5Backend}>
       <Plate editor={editor}>
         <EditorContainer>
-          <Editor variant="demo" />
+          <Editor variant="default" />
         </EditorContainer>
         <SettingsDialog />
       </Plate>
     </DndProvider>
   );
 }
+
+export default PlateEditor;

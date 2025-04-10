@@ -123,7 +123,7 @@ const config: Config = {
   				...require("tailwindcss/defaultTheme").fontFamily.mono
   			],
   			sans: [
-  				'var(--font-sans)',
+  				'var(--font-inter)',
   				'ui-sans-serif',
   				'-apple-system',
   				'BlinkMacSystemFont',

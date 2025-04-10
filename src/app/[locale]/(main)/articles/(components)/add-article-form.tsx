@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 
-import { PlateEditor } from "@/components/editor/plate-editor";
+import PlateEditor from "@/components/editor/plate-editor";
 import {
   Form,
   FormControl,

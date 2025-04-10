@@ -19,7 +19,7 @@ export function EmojiToolbarDropdown({
 }: EmojiToolbarDropdownProps) {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>{control}</PopoverTrigger>
+      <PopoverTrigger>{control}</PopoverTrigger>
       <PopoverContent className="z-[100]">{children}</PopoverContent>
     </Popover>
   );

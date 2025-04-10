@@ -20,7 +20,7 @@ async function MainLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
+      <SidebarInset className="overflow-hidden">
         <Header />
         {children}
         <Footer />
