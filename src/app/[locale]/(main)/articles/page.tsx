@@ -23,7 +23,6 @@ async function Page({
     [key: string]: string | string[] | undefined;
   };
 }) {
-  console.log("🚀 ~ searchParams:", searchParams);
   const { data, pagination } = await getData();
 
   return (

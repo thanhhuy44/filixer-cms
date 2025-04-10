@@ -1,86 +1,35 @@
-"use client";
+import { GalleryVerticalEnd } from "lucide-react";
+import Image from "next/image";
 
-import { Loader2 } from "lucide-react";
-import { signIn } from "next-auth/react";
-import { useForm } from "react-hook-form";
+import LoginForm from "../(components)/login-form";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { LoginBody } from "@/types/auth";
-
-function Page() {
-  const form = useForm<LoginBody>();
-  const isSubmitting = form.formState.isSubmitting;
-  const handleLogin = async (data: LoginBody) => {
-    await signIn("credentials", { ...data, redirect: true, callbackUrl: "/" });
-  };
-
+export default function Page() {
   return (
-    <main className="flex min-h-dvh items-center justify-center p-4">
-      <Form {...form}>
-        <form
-          className="w-full max-w-xl"
-          onSubmit={form.handleSubmit(handleLogin)}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Login</CardTitle>
-              <CardDescription>Welcome back!</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl {...field}>
-                      <Input placeholder="Your email..." />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl {...field}>
-                      <Input type="password" placeholder="Password..." />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </CardContent>
-            <CardFooter className="justify-end">
-              <Button disabled={isSubmitting} type="submit">
-                {isSubmitting ? <Loader2 className="animate-spin" /> : "Login"}
-              </Button>
-            </CardFooter>
-          </Card>
-        </form>
-      </Form>
-    </main>
+    <div className="grid min-h-svh lg:grid-cols-2">
+      <div className="flex flex-col gap-4 p-6 md:p-10">
+        <div className="flex justify-center gap-2 md:justify-start">
+          <a href="#" className="flex items-center gap-2 font-medium">
+            <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <GalleryVerticalEnd className="size-4" />
+            </div>
+            Acme Inc.
+          </a>
+        </div>
+        <div className="flex flex-1 items-center justify-center">
+          <div className="w-full max-w-xs">
+            <LoginForm />
+          </div>
+        </div>
+      </div>
+      <div className="relative hidden bg-muted lg:block">
+        <Image
+          width={4000}
+          height={4000}
+          src="https://i.etsystatic.com/23032045/r/il/44d207/3294465511/il_570xN.3294465511_atum.jpg"
+          alt="Image"
+          className="absolute inset-0 size-full object-cover object-center dark:brightness-[0.2] dark:grayscale"
+        />
+      </div>
+    </div>
   );
 }
-
-export default Page;
