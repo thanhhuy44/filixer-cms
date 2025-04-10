@@ -1,29 +1,32 @@
 "use client";
 
 import {
-  Bell,
+  ChartColumnStacked,
   ChevronDown,
   CreditCard,
   Grid,
-  LogOut,
+  LibraryBig,
+  Newspaper,
   Package,
+  PanelBottomOpen,
+  Settings,
   User,
 } from "lucide-react";
-import React from "react";
+import { useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { Link } from "@/navigation";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import {
@@ -33,15 +36,74 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   SidebarSeparator,
 } from "../ui/sidebar";
 
+const sidebarItems = [
+  {
+    label: "Dashboard",
+    icon: Grid,
+  },
+  {
+    label: "Product",
+    icon: Package,
+    subItems: [
+      {
+        icon: LibraryBig,
+        label: "Collections",
+      },
+      {
+        icon: ChartColumnStacked,
+        label: "Inventory",
+      },
+    ],
+  },
+  {
+    key: "articles",
+    label: "Articles",
+    icon: Newspaper,
+    subItems: [
+      {
+        icon: LibraryBig,
+        label: "Collections",
+      },
+    ],
+  },
+  {
+    key: "account",
+    label: "Account",
+    icon: User,
+    subItems: [
+      {
+        icon: User,
+        label: "Profile",
+      },
+      {
+        icon: Settings,
+        label: "Settings",
+      },
+      {
+        icon: CreditCard,
+        label: "Billing",
+      },
+    ],
+  },
+];
+
 export default function AppSidebar() {
-  const [accountOpen, setAccountOpen] = React.useState(false);
+  const [open, setOpen] = useState({
+    account: true,
+    articles: true,
+  });
 
   return (
     <Sidebar>
-      {/* Company Header */}
       <SidebarHeader>
         <div className="flex items-center justify-center gap-x-2 p-4">
           <div className="rounded bg-primary p-1 text-white">
@@ -56,184 +118,114 @@ export default function AppSidebar() {
       <SidebarGroup>
         <SidebarGroupLabel>Overview</SidebarGroupLabel>
         <SidebarGroupContent>
-          <Button
-            variant="ghost"
-            className="w-full justify-start gap-2 bg-gray-100 font-normal"
-          >
-            <Grid className="size-4" />
-            Dashboard
-          </Button>
-          <Button
-            variant="ghost"
-            className="w-full justify-start gap-2 font-normal"
-          >
-            <Package className="size-4" />
-            Product
-          </Button>
-          <Collapsible
-            open={accountOpen}
-            onOpenChange={setAccountOpen}
-            className="w-full"
-          >
-            <CollapsibleTrigger asChild>
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal"
-              >
-                <User className="size-4" />
-                Account
-                <ChevronDown
-                  className={cn(
-                    "ml-auto h-4 w-4 transition-transform",
-                    accountOpen && "rotate-180"
-                  )}
-                />
-              </Button>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="space-y-1 pl-6">
-              <Button
-                variant="ghost"
-                className="w-full justify-start font-normal"
-              >
-                Profile
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start font-normal"
-              >
-                Login
-              </Button>
-            </CollapsibleContent>
-          </Collapsible>
+          {/* Add more sidebar items here */}
+          <SidebarMenu>
+            {sidebarItems.map((item, index) => {
+              const Icon = item.icon;
+              return item.subItems ? (
+                <Collapsible
+                  onOpenChange={(open) => {
+                    setOpen((prev) => ({ ...prev, [item.key]: !open }));
+                  }}
+                  key={index}
+                  className="group/collapsible"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton asChild>
+                        <Link
+                          href={"#"}
+                          className="flex w-full items-center gap-x-2"
+                        >
+                          <Icon />
+                          <span className="flex-1">{item.label}</span>
+                          <ChevronDown
+                            className={cn(
+                              open[item.key] ? "-rotate-90" : "-rotate-0",
+                              "duration-150"
+                            )}
+                          />
+                        </Link>
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {item.subItems.map((subItem, subIndex) => {
+                          const SubIcon = subItem.icon;
+                          return (
+                            <SidebarMenuSubItem key={subIndex}>
+                              <SidebarMenuSubButton asChild>
+                                <Link
+                                  className="flex items-center gap-x-2"
+                                  href={"#"}
+                                >
+                                  <SubIcon />
+                                  {subItem.label}
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          );
+                        })}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              ) : (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton>
+                    <Link
+                      key={index}
+                      href={"#"}
+                      className="flex items-center gap-x-1"
+                    >
+                      <Icon className="size-4" /> {item.label}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
+          </SidebarMenu>
         </SidebarGroupContent>
       </SidebarGroup>
       {/* User Profile Section */}
       <SidebarFooter className="mt-auto">
-        {/* <Collapsible
-          open={userMenuOpen}
-          onOpenChange={setUserMenuOpen}
-          className="w-full"
-        >
-          <CollapsibleTrigger asChild>
-            <Button
-              variant="ghost"
-              className="w-full justify-start rounded-none border-t p-4 font-normal"
-            >
-              <div className="flex items-center gap-3">
-                <Avatar className="size-8">
-                  <AvatarImage src="" />
-                  <AvatarFallback className="bg-purple-500 text-white">
-                    BT
-                  </AvatarFallback>
-                </Avatar>
-                <div className="text-left">
-                  <div className="font-medium">Bui Tran Thanh Huy</div>
-                  <div className="text-xs text-gray-500">
-                    thhuy28062001@gmail.com
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  <Avatar className="size-8">
+                    <AvatarImage src="" />
+                    <AvatarFallback className="bg-purple-500 text-white">
+                      BT
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="text-left">
+                    <div className="font-medium">Thanh Huy</div>
                   </div>
-                </div>
-              </div>
-              <ChevronDown
-                className={cn(
-                  "ml-auto h-4 w-4 transition-transform",
-                  userMenuOpen && "rotate-180"
-                )}
-              />
-            </Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent className="border-t bg-white">
-            <div className="space-y-1 p-2">
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal"
+                  <PanelBottomOpen
+                    className={cn("ml-auto h-4 w-4 transition-transform")}
+                  />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side="top"
+                className="w-[--radix-popper-anchor-width]"
               >
-                <User className="size-4" />
-                Profile
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal"
-              >
-                <CreditCard className="size-4" />
-                Billing
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal"
-              >
-                <Bell className="size-4" />
-                Notifications
-              </Button>
-              <Separator className="my-1" />
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal text-red-500"
-              >
-                <LogOut className="size-4" />
-                Sign out
-              </Button>
-            </div>
-          </CollapsibleContent>
-        </Collapsible> */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="h-auto w-full justify-start rounded-none border-t py-2 font-normal"
-            >
-              <div className="flex items-center gap-3">
-                <Avatar className="size-8">
-                  <AvatarImage src="" />
-                  <AvatarFallback className="bg-purple-500 text-white">
-                    BT
-                  </AvatarFallback>
-                </Avatar>
-                <div className="text-left">
-                  <div className="font-medium">Bui Tran Thanh Huy</div>
-                  <div className="text-xs text-gray-500">
-                    thhuy28062001@gmail.com
-                  </div>
-                </div>
-              </div>
-              <ChevronDown
-                className={cn("ml-auto h-4 w-4 transition-transform")}
-              />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-64 p-1">
-            <div className="space-y-1 p-2">
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal"
-              >
-                <User className="size-4" />
-                Profile
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal"
-              >
-                <CreditCard className="size-4" />
-                Billing
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal"
-              >
-                <Bell className="size-4" />
-                Notifications
-              </Button>
-              <Separator className="my-1" />
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2 font-normal text-red-500"
-              >
-                <LogOut className="size-4" />
-                Sign out
-              </Button>
-            </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
+                <DropdownMenuItem asChild>
+                  <span>Account</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <span>Billing</span>
+                </DropdownMenuItem>
+                <SidebarSeparator />
+                <DropdownMenuItem asChild>
+                  <span>Sign out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );

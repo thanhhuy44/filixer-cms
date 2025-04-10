@@ -32,7 +32,7 @@ function AddArticleForm() {
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -45,7 +45,7 @@ function AddArticleForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Aa" rows={5} />
+                <Textarea {...field} placeholder="Aa" rows={5} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -58,7 +58,7 @@ function AddArticleForm() {
             <FormItem>
               <FormLabel>Thumbnail</FormLabel>
               <FormControl>
-                <ImageUpload />
+                <ImageUpload onUploadComplete={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -74,7 +74,8 @@ function AddArticleForm() {
                 <div>
                   <MultiSelect
                     options={[]}
-                    onValueChange={(e) => console.log(e)}
+                    value={field.value}
+                    onValueChange={(e) => field.onChange(e)}
                   />
                 </div>
               </FormControl>
@@ -89,7 +90,7 @@ function AddArticleForm() {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <PlateEditor />
+                <PlateEditor onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

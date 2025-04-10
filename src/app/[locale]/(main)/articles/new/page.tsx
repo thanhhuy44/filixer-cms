@@ -1,8 +1,14 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
 import PageContainer from "@/components/layout/page-container";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 
-import AddArticleForm from "../(components)/add-article-form";
+const AddArticleForm = dynamic(
+  () => import("../(components)/add-article-form")
+);
 
 function Page() {
   return (
