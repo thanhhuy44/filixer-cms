@@ -9,12 +9,13 @@ import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 
 import { AssetApi } from "@/api/asset";
+import { MediaAsset } from "@/types";
 
 import { Button } from "./button";
 import { Input } from "./input";
 
 interface ImageUploadProps {
-  onUploadComplete?: (url: string) => void;
+  onUploadComplete?: (data: MediaAsset) => void;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onUploadComplete }) => {
@@ -122,6 +123,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUploadComplete }) => {
           className="hidden"
           disabled={loading || uploadedImagePath !== null}
           onChange={handleImageChange}
+          multiple={false}
         />
       </div>
 

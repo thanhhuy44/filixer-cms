@@ -82,3 +82,5 @@ export type ArticleCategory = {
   createdAt: string,
   updatedAt: string,
 }
+
+export type ArticleStatus =  'DRAFT' | 'IN_REVIEW' | 'PRIVATE' | 'PUBLIC' | 'REJECTED' | 'DELETED'

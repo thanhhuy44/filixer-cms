@@ -5,13 +5,14 @@ import { Check, Text, X } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";
 
+import { ArticleApi } from "@/api/article";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/table/data-table";
 import { DataTableToolbar } from "@/components/ui/table/data-table-toolbar";
 import { useDataTable } from "@/hooks/use-data-table";
 import { cn } from "@/lib/utils";
-import { Article, ArticleCategory, Pagination } from "@/types";
+import { Article, ArticleCategory, ArticleStatus, Pagination } from "@/types";
 
 interface PageProps {
   articles: Article[];
@@ -81,12 +82,22 @@ const ProductTable: FC<PageProps> = ({ articles, pagination }) => {
           >
             {row.original.status}
           </Badge>
-          {row.original.status === "PENDING" ? (
+          {row.original.status === "IN_REVIEW" ? (
             <div className="flex items-center">
-              <Button className="size-8" variant="ghost" size="icon">
+              <Button
+                onClick={() => updateStatus(row.original._id, "REJECTED")}
+                className="size-8"
+                variant="ghost"
+                size="icon"
+              >
                 <X className="text-destructive" />
               </Button>
-              <Button className="size-8" variant="ghost" size="icon">
+              <Button
+                onClick={() => updateStatus(row.original._id, "PUBLIC")}
+                className="size-8"
+                variant="ghost"
+                size="icon"
+              >
                 <Check className="text-green-600" />
               </Button>
             </div>
@@ -95,6 +106,14 @@ const ProductTable: FC<PageProps> = ({ articles, pagination }) => {
       ),
     },
   ];
+
+  const updateStatus = async (id: string, status: ArticleStatus) => {
+    try {
+      await ArticleApi.update(id, { status });
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
 
   const { table } = useDataTable({
     columns,

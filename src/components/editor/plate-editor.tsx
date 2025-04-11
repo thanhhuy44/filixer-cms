@@ -9,6 +9,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { SettingsDialog } from "@/components/editor/settings";
 import { useCreateEditor } from "@/components/editor/use-create-editor";
 import { Editor, EditorContainer } from "@/components/plate-ui/editor";
+import { cn } from "@/lib/utils";
 
 interface PlateEditorProps {
   onChange?: (value: string) => void;
@@ -27,7 +28,9 @@ const PlateEditor: FC<PlateEditorProps> = ({ onChange }) => {
         }}
         editor={editor}
       >
-        <EditorContainer>
+        <EditorContainer
+          className={cn("border rounded-lg focus-within:ring ring-primary")}
+        >
           <Editor variant="default" />
         </EditorContainer>
         <SettingsDialog />
