@@ -1,7 +1,7 @@
 "use client";
 
-import type { Column, Table } from "@tanstack/react-table";
-import { X } from "lucide-react";
+import type { Column, Row, Table } from "@tanstack/react-table";
+import { Trash, X } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -14,12 +14,14 @@ import { cn } from "@/lib/utils";
 
 interface DataTableToolbarProps<TData> extends React.ComponentProps<"div"> {
   table: Table<TData>;
+  onDelete?: (row: Row<TData>[]) => void;
 }
 
 export function DataTableToolbar<TData>({
   table,
   children,
   className,
+  onDelete,
   ...props
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
@@ -28,6 +30,8 @@ export function DataTableToolbar<TData>({
     () => table.getAllColumns().filter((column) => column.getCanFilter()),
     [table]
   );
+
+  const selectedRows = table.getFilteredSelectedRowModel().rows;
 
   const onReset = React.useCallback(() => {
     table.resetColumnFilters();
@@ -62,7 +66,23 @@ export function DataTableToolbar<TData>({
       </div>
       <div className="flex items-center gap-2">
         {children}
-        <DataTableViewOptions table={table} />
+        <div className="flex items-center gap-x-1">
+          {selectedRows.length ? (
+            <Button
+              onClick={() => {
+                if (onDelete) {
+                  onDelete(selectedRows);
+                }
+              }}
+              size={"icon"}
+              variant="ghost"
+              className="size-8"
+            >
+              <Trash className="text-destructive" />
+            </Button>
+          ) : null}
+          <DataTableViewOptions table={table} />
+        </div>
       </div>
     </div>
   );

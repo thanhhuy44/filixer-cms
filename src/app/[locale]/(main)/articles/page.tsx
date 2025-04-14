@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Plus } from "lucide-react";
 
 import { ArticleApi } from "@/api/article";
@@ -11,8 +12,8 @@ import { Pagination, QueryParams } from "@/types";
 
 import ProductTable from "./(components)/article-table";
 
-const getData = async (pagination?: QueryParams) => {
-  const response = await ArticleApi.get(pagination);
+const getData = async (queries?: QueryParams) => {
+  const response = await ArticleApi.get(queries);
   return response;
 };
 
@@ -23,7 +24,7 @@ async function Page({
     [key: string]: string | string[] | undefined;
   };
 }) {
-  const { data, pagination } = await getData();
+  const { data, pagination } = await getData(searchParams as any);
 
   return (
     <PageContainer scrollable={false}>

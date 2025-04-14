@@ -1,6 +1,6 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, Row } from "@tanstack/react-table";
 import { Check, Text, X } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";
@@ -8,10 +8,12 @@ import { FC } from "react";
 import { ArticleApi } from "@/api/article";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { DataTable } from "@/components/ui/table/data-table";
 import { DataTableToolbar } from "@/components/ui/table/data-table-toolbar";
 import { useDataTable } from "@/hooks/use-data-table";
 import { cn } from "@/lib/utils";
+import { useRouter } from "@/navigation";
 import { Article, ArticleCategory, ArticleStatus, Pagination } from "@/types";
 
 interface PageProps {
@@ -20,7 +22,31 @@ interface PageProps {
 }
 
 const ProductTable: FC<PageProps> = ({ articles, pagination }) => {
+  const router = useRouter();
+
   const columns: ColumnDef<Article>[] = [
+    {
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select row"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    },
     {
       accessorKey: "Thumbnail",
       header: "Thumbnail",
@@ -72,6 +98,7 @@ const ProductTable: FC<PageProps> = ({ articles, pagination }) => {
       ),
     },
     {
+      id: "status",
       accessorKey: "Status",
       header: "Status",
       cell: ({ row }) => (
@@ -104,8 +131,36 @@ const ProductTable: FC<PageProps> = ({ articles, pagination }) => {
           ) : null}
         </div>
       ),
+      enableColumnFilter: true,
+      meta: {
+        label: "Status",
+        placeholder: "Search articles...",
+        variant: "select",
+        options: [
+          { label: "All", value: "" },
+          { label: "Draft", value: "DRAFT" },
+          { label: "Published", value: "PUBLIC" },
+          { label: "Rejected", value: "REJECTED" },
+          { label: "In Review", value: "IN_REVIEW" },
+          { label: "Private", value: "PRIVATE" },
+        ],
+      },
     },
   ];
+
+  const onDelete = async (rows: Row<Article>[]) => {
+    try {
+      await Promise.all(
+        rows.map(async (row) => {
+          await ArticleApi.delete(row.original._id);
+        })
+      );
+      router.refresh();
+    } catch (error) {
+      console.error("🚀 ~ onDelete ~ error:", error);
+      throw new Error("Failed to delete articles");
+    }
+  };
 
   const updateStatus = async (id: string, status: ArticleStatus) => {
     try {
@@ -124,7 +179,7 @@ const ProductTable: FC<PageProps> = ({ articles, pagination }) => {
 
   return (
     <DataTable table={table} actionBar={false}>
-      <DataTableToolbar table={table} />
+      <DataTableToolbar table={table} onDelete={onDelete} />
     </DataTable>
   );
 };
